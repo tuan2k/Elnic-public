@@ -5,7 +5,11 @@ import App from './App'
 import router from './router'
 import User from './storage/User'
 import Notification from './storage/Notification'
+import {store}  from './storage/store'
 import Swal from "sweetalert2";
+import Vuex from 'vuex'
+
+Vue.use(Vuex)
 
 Vue.config.productionTip = false
 
@@ -32,6 +36,7 @@ window.Toast = Toast;
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>'
 })

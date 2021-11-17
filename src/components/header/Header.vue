@@ -22,14 +22,14 @@
                             </div>
                             <div class="entry hidden-xs hidden-sm"><a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a></div>
                             <div class="entry hidden-xs hidden-sm cart">
-                                <a href="cart.html">
+                                <router-link to="/cart">
                                     <b class="hidden-xs">Your bag</b>
                                     <span class="cart-icon">
                                         <i class="fa fa-shopping-bag" aria-hidden="true"></i>
-                                        <span class="cart-label">5</span>
+                                        <span class="cart-label">{{count}}</span>
                                     </span>
                                     <span class="cart-title hidden-xs">$1195.00</span>
-                                </a>
+                                </router-link>
                                 <div class="cart-toggle hidden-xs hidden-sm">
                                     <div class="cart-overflow">
                                         <div class="cart-entry clearfix">
@@ -141,7 +141,7 @@
                                 <nav>
                                     <ul>
                                         <li class="active">
-                                            <a href="index1.html">Home</a>
+                                            <router-link to="/">Home</router-link>
                                             <div class="menu-toggle"></div>
                                             <ul>
                                                 <li class="active"><a href="index1.html">Homepage 1</a></li>
@@ -590,6 +590,12 @@
 
 <script>
 export default {
-  name: 'ElnicHeader'
+  name: 'ElnicHeader',
+  computed: {
+      count() {
+          console.log(this.$store.state.cartItemCount);
+          return this.$store.state.cartItemCount;
+      }
+  }
 };
 </script>

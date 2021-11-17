@@ -33,7 +33,7 @@
                           <span class="text">Learn More</span>
                         </span>
                       </a>
-                      <a class="button size-2 style-3" href="#">
+                      <a class="button size-2 style-3" href="#" v-on:click="addToCart(product)">
                         <span class="button-wrapper">
                           <span class="icon"><img src="/static/img/icon-3.png" alt=""></span>
                           <span class="text">Add To Cart</span>
@@ -1385,7 +1385,6 @@
     </div>
   </div>
 </template>
-
 <script type="text/javascript">
 import axios from 'axios';
 export default {
@@ -1402,14 +1401,20 @@ export default {
     data() {
         return {
             products: [],
+            carts: [],
             searchTerm: ''
         }
     },
     methods: {
         allProduct(){
             axios.get('https://elnic-api.herokuapp.com/api/product')
-                .then( ({data}) => {(this.products = data);})
+                .then( ({data}) => {(this.products = data); console.log(this.products)})
                 .catch()
+        },
+        addToCart(product) {
+          console.log("Add To Cart")
+          console.log(product)
+          this.$store.dispatch("addToCart", product);
         },
         deleteUser(id){
             Swal.fire({
@@ -1443,4 +1448,4 @@ export default {
     }
 
 }
-</script>
+ </script>

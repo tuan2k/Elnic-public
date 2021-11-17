@@ -3,8 +3,8 @@
     <div class="col-md-3 col-md-pull-9">
       <div class="h4 col-xs-b25">popular categories</div>
       <ul class="categories-menu">
-        <li>
-          <a href="#">laptops &amp; computers</a>
+        <li v-for="category in categories" :key="category._id">
+          <a href="#">{{ category.categoryName }}</a>
           <div class="toggle"/>
           <ul>
             <li>
@@ -44,228 +44,6 @@
               <a href="#">gadgets</a>
             </li>
           </ul>
-        </li>
-        <li>
-          <a href="#">video &amp; photo cameras</a>
-          <div class="toggle"/>
-          <ul>
-            <li>
-              <a href="#">laptops &amp; computers</a>
-              <div class="toggle"/>
-              <ul>
-                <li>
-                  <a href="#">laptops &amp; computers</a>
-                </li>
-                <li>
-                  <a href="#">video &amp; photo cameras</a>
-                </li>
-                <li>
-                  <a href="#">smartphones</a>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <a href="#">video &amp; photo cameras</a>
-              <div class="toggle"/>
-              <ul>
-                <li>
-                  <a href="#">laptops &amp; computers</a>
-                </li>
-                <li>
-                  <a href="#">smartphones</a>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <a href="#">smartphones</a>
-            </li>
-            <li>
-              <a href="#">tv &amp; audio</a>
-            </li>
-            <li>
-              <a href="#">gadgets</a>
-            </li>
-          </ul>
-        </li>
-        <li>
-          <a href="#">smartphones</a>
-          <div class="toggle"/>
-          <ul>
-            <li>
-              <a href="#">laptops &amp; computers</a>
-              <div class="toggle"/>
-              <ul>
-                <li>
-                  <a href="#">laptops &amp; computers</a>
-                </li>
-                <li>
-                  <a href="#">video &amp; photo cameras</a>
-                </li>
-                <li>
-                  <a href="#">smartphones</a>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <a href="#">video &amp; photo cameras</a>
-              <div class="toggle"/>
-              <ul>
-                <li>
-                  <a href="#">video &amp; photo cameras</a>
-                </li>
-                <li>
-                  <a href="#">smartphones</a>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <a href="#">smartphones</a>
-            </li>
-            <li>
-              <a href="#">tv &amp; audio</a>
-            </li>
-            <li>
-              <a href="#">gadgets</a>
-            </li>
-          </ul>
-        </li>
-        <li>
-          <a href="#">tv &amp; audio</a>
-          <div class="toggle"/>
-          <ul>
-            <li>
-              <a href="#">laptops &amp; computers</a>
-              <div class="toggle"/>
-              <ul>
-                <li>
-                  <a href="#">laptops &amp; computers</a>
-                </li>
-                <li>
-                  <a href="#">video &amp; photo cameras</a>
-                </li>
-                <li>
-                  <a href="#">smartphones</a>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <a href="#">video &amp; photo cameras</a>
-              <div class="toggle"/>
-              <ul>
-                <li>
-                  <a href="#">video &amp; photo cameras</a>
-                </li>
-                <li>
-                  <a href="#">smartphones</a>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <a href="#">smartphones</a>
-            </li>
-            <li>
-              <a href="#">tv &amp; audio</a>
-            </li>
-            <li>
-              <a href="#">gadgets</a>
-            </li>
-          </ul>
-        </li>
-        <li>
-          <a href="#">gadgets</a>
-          <div class="toggle"/>
-          <ul>
-            <li>
-              <a href="#">laptops &amp; computers</a>
-              <div class="toggle"/>
-              <ul>
-                <li>
-                  <a href="#">laptops &amp; computers</a>
-                </li>
-                <li>
-                  <a href="#">video &amp; photo cameras</a>
-                </li>
-                <li>
-                  <a href="#">smartphones</a>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <a href="#">video &amp; photo cameras</a>
-              <div class="toggle"/>
-              <ul>
-                <li>
-                  <a href="#">video &amp; photo cameras</a>
-                </li>
-                <li>
-                  <a href="#">smartphones</a>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <a href="#">smartphones</a>
-            </li>
-            <li>
-              <a href="#">tv &amp; audio</a>
-            </li>
-            <li>
-              <a href="#">gadgets</a>
-            </li>
-          </ul>
-        </li>
-        <li>
-          <a href="#">car electronics</a>
-          <div class="toggle"/>
-          <ul>
-            <li>
-              <a href="#">laptops &amp; computers</a>
-              <div class="toggle"/>
-              <ul>
-                <li>
-                  <a href="#">laptops &amp; computers</a>
-                </li>
-                <li>
-                  <a href="#">video &amp; photo cameras</a>
-                </li>
-                <li>
-                  <a href="#">smartphones</a>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <a href="#">video &amp; photo cameras</a>
-              <div class="toggle"/>
-              <ul>
-                <li>
-                  <a href="#">video &amp; photo cameras</a>
-                </li>
-                <li>
-                  <a href="#">smartphones</a>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <a href="#">smartphones</a>
-            </li>
-            <li>
-              <a href="#">tv &amp; audio</a>
-            </li>
-            <li>
-              <a href="#">gadgets</a>
-            </li>
-          </ul>
-        </li>
-        <li>
-          <a href="#">video games &amp; consoles</a>
-        </li>
-        <li>
-          <a href="#">software</a>
-        </li>
-        <li>
-          <a href="#">offeci accessories</a>
-        </li>
-        <li>
-          <a href="#">accessories</a>
         </li>
       </ul>
 
@@ -571,9 +349,34 @@
     </div>
   </div>
 </template>
-
-<script>
+<script type="text/javascript">
+import axios from 'axios';
 export default {
-  name: 'ElnicSidebar'
-};
+  name: 'ElnicSidebar',
+    created() {
+        this.allCategory();
+    },
+    computed:{
+        filtersearch(){
+            return this.products.filter(product => {
+                return product.productName.match(this.searchTerm);
+            })
+        }
+    },
+    data() {
+        return {
+            categories: [],
+            searchTerm: ''
+        }
+    },
+    methods: {
+        allCategory() {
+            axios.get('https://elnic-api.herokuapp.com/api/categories')
+                .then( ({data}) => {(this.categories = data);})
+                .catch()
+        },
+        
+    }
+
+}
 </script>
