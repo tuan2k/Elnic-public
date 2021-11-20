@@ -593,7 +593,6 @@ export default {
   name: 'ElnicHeader',
   computed: {
       count() {
-          console.log(this.$store.state.cartItemCount);
           return this.$store.state.cartItemCount;
       }
   }

@@ -24,29 +24,37 @@
             <th>product name</th>
             <th style="width: 150px;">price</th>
             <th style="width: 260px;">quantity</th>
-            <th style="width: 70px;">color</th>
+            <th style="width: 70px;">Code</th>
             <th style="width: 150px;">total</th>
             <th style="width: 70px;"/>
           </tr>
         </thead>
         <tbody>
-          <tr v-for="cart in carts" :key="cart._id">
+          <tr v-for="(cart,index) in carts" :key="cart._id">
             <td data-title=" ">
               <a class="cart-entry-thumbnail" href="#"><img src="/../../img//product-1.png" alt=""></a>
             </td>
             <td data-title=" "><h6 class="h6"><a href="#">{{ cart.productName }}</a></h6></td>
-            <td data-title="Price: ">$155.00</td>
-            <td data-title="Quantity: ">
-              <div class="quantity-select">
-                <span class="minus"/>
-                <span class="number">2</span>
-                <span class="plus"/>
+            <td data-title="Price: "> {{ cart.sellingPrice }}</td>
+            <td>
+              <div v-for="(qt,i) in quantity" :key="qt[index]">
+              <div class="quantity-select" data-title="Quantity: " v-if="i === index ">
+                <span class="minus" v-on:click="decreaseItem(index)"/>
+                <span class="number">{{ qt }}</span>
+                <span class="plus" v-on:click="increaseItem(index)"/>
+              </div>
               </div>
             </td>
-            <td data-title="Color: "><div class="cart-color" style="background: #eee;"/></td>
-            <td data-title="Total:">$310.00</td>
+            <td data-title="Color: ">{{ cart.productCode }}</td>
+            <td>
+              <div v-for="(qt,ind) in quantity" :key="qt[index]">
+              <span v-if="ind === index ">{{ cart.sellingPrice*qt }}</span>
+              </div>
+            </td>
             <td data-title="">
-              <div class="button-close"/>
+              <div class="btn btn-danger" v-on:click="removeItem(cart._id)">
+                <span>X</span>
+              </div>
             </td>
           </tr>
         </tbody>
@@ -77,12 +85,12 @@
                 <span class="text">update cart</span>
               </span>
             </a>
-            <a class="button size-2 style-3" href="#">
+            <router-link class="button size-2 style-3" to="/checkout">
               <span class="button-wrapper">
                 <span class="icon"><img src="/../../img//icon-4.png" alt=""></span>
                 <span class="text">proceed to checkout</span>
               </span>
-            </a>
+            </router-link>
           </div>
         </div>
       </div>
@@ -169,15 +177,33 @@ export default {
   name: 'cart',
   created () {
       this.getCartItems();
+      this.getQuantity();
   },
   data () {
       return {
           carts : [],
+          quantity: [],
       }
   },
   methods : {
       getCartItems() {
           this.carts = this.$store.state.cartItems;
+      },
+      getQuantity() {
+          this.quantity = this.$store.state.cartQuantity;
+      },
+      increaseItem(index) {
+        this.$store.dispatch("increaseItem", index);
+        this.getQuantity();
+      },
+      decreaseItem(index) {
+        this.$store.dispatch("decreaseItem", index);
+        this.getQuantity();
+      },
+      removeItem(id) {
+        this.$store.dispatch("removeItem",id);
+        this.getQuantity();
+        this.getCartItems();
       }
   }
 

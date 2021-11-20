@@ -1408,12 +1408,10 @@ export default {
     methods: {
         allProduct(){
             axios.get('https://elnic-api.herokuapp.com/api/product')
-                .then( ({data}) => {(this.products = data); console.log(this.products)})
+                .then( ({data}) => {(this.products = data);})
                 .catch()
         },
         addToCart(product) {
-          console.log("Add To Cart")
-          console.log(product)
           this.$store.dispatch("addToCart", product);
         },
         deleteUser(id){
