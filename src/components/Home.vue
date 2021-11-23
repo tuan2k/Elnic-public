@@ -17,7 +17,7 @@
           <div class="row nopadding">
             
           
-          <div class="col-sm-4" v-for="product in products" :key="product._id">
+          <div class="col-sm-4" v-for="product in filtersearch" :key="product._id">
               <div class="product-shortcode style-1">
                 <div class="title">
                   <div class="simple-article size-1 color col-xs-b5"><a href="#">{{ product.productName }}</a></div>
@@ -33,12 +33,12 @@
                           <span class="text">Learn More</span>
                         </span>
                       </a>
-                      <a class="button size-2 style-3" href="#" v-on:click="addToCart(product)">
+                      <p class="button size-2 style-3" v-on:click="addToCart(product)">
                         <span class="button-wrapper">
                           <span class="icon"><img src="/static/img/icon-3.png" alt=""></span>
                           <span class="text">Add To Cart</span>
                         </span>
-                      </a>
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -530,10 +530,9 @@
           </div>
         </div>
       </div>
-
       <div class="empty-space col-xs-b35 col-md-b70"/>
 
-      <div
+      <!-- <div
         class="swiper-container arrows-align-top"
         data-breakpoints="1"
         data-xs-slides="1"
@@ -644,11 +643,11 @@
           </div>
         </div>
         <div class="swiper-pagination relative-pagination visible-xs"/>
-      </div>
+      </div> -->
 
       <div class="empty-space col-xs-b35 col-md-b70"/>
 
-      <div class="swiper-container arrows-align-top">
+      <!-- <div class="swiper-container arrows-align-top">
         <div class="h4 swiper-title">people choice</div>
         <div class="empty-space col-xs-b20"/>
         <div class="swiper-button-prev style-1"/>
@@ -696,11 +695,11 @@
           </div>
         </div>
         <div class="swiper-pagination visible-xs"/>
-      </div>
+      </div> -->
 
-      <div class="empty-space col-xs-b35 col-md-b70"/>
+      <!-- <div class="empty-space col-xs-b35 col-md-b70"/> -->
 
-      <div
+      <!-- <div
         class="swiper-container arrows-align-top"
         data-breakpoints="1"
         data-xs-slides="1"
@@ -931,9 +930,9 @@
           </div>
         </div>
         <div class="swiper-pagination relative-pagination visible-xs"/>
-      </div>
+      </div> -->
 
-      <div class="empty-space col-xs-b35 col-md-b70"/>
+      <!-- <div class="empty-space col-xs-b35 col-md-b70"/> -->
 
       <div class="tabs-block">
         <div class="row">
@@ -1393,8 +1392,9 @@ export default {
     },
     computed:{
         filtersearch(){
+            let categoryId = this.$store.state.categoryId;
             return this.products.filter(product => {
-                return product.productName.match(this.searchTerm);
+                return product.categoriesId.match(categoryId);
             })
         }
     },
@@ -1402,16 +1402,23 @@ export default {
         return {
             products: [],
             carts: [],
-            searchTerm: ''
+            searchTerm: '',
+            rows: 3,
+            perPage: 5,
+            currentPage: 1
         }
     },
     methods: {
         allProduct(){
             axios.get('https://elnic-api.herokuapp.com/api/product')
-                .then( ({data}) => {(this.products = data);})
+                .then( ({data}) => {(this.products = data); this.$store.state.products = data})
                 .catch()
         },
         addToCart(product) {
+          Toast.fire({
+                    icon: 'success',
+                    title: 'Add to cart successfully'
+          });
           this.$store.dispatch("addToCart", product);
         },
         deleteUser(id){

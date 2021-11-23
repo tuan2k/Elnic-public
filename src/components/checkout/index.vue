@@ -291,11 +291,17 @@ export default {
       this.getCartItems();
       this.getQuantity();
       this.getTotal();
+      this.getProduct()
   },
   data () {
       return {
+         form : {
+
+         },
           carts : [],
           quantity: [],
+          products: [],
+          total: 0,
       }
   },
   computed : {
@@ -312,6 +318,17 @@ export default {
       },
       getTotal(){
         this.$store.dispatch("getTotal");
+      },
+      getProduct(){
+         for (let i =0 ; i< carts.length; i++) {
+              this.products.push(this.carts[i])
+              for (let j=0;j< this.quantity.length;j++){
+                  if (i===j) {
+                       this.products[i].cartNumber = this.quantity[j];
+                  }
+              }
+         }
+         console.log(this.products);
       }
   }
 };

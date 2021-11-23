@@ -12,6 +12,7 @@
   "dependencies": {
     "@flatfile/vuejs": "^0.3.2",
     "axios": "^0.24.0",
+    "bootstrap-vue": "^2.21.2",
     "jquery": "^3.6.0",
     "noty": "^3.2.0-beta",
     "sweetalert2": "^11.1.10",

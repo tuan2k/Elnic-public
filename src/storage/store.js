@@ -5,11 +5,12 @@ Vue.use(Vuex)
 
 export const store = new Vuex.Store({
     state: {
-        todos: [{id:1, name: "Shopping at 7"}],
         cartItemCount: 0,
         cartItems: [],
         cartQuantity: [],
+        products: [],
         total: 0,
+        categoryId: '',
     },
     getters: {
         doneTodos: state => {

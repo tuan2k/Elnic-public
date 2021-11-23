@@ -4,7 +4,7 @@
       <div class="h4 col-xs-b25">popular categories</div>
       <ul class="categories-menu">
         <li v-for="category in categories" :key="category._id">
-          <a href="#">{{ category.categoryName }}</a>
+          <a v-on:click="searchByCategory(category._id)">{{ category.categoryName }}</a>
           <div class="toggle"/>
           <ul>
             <li>
@@ -55,10 +55,10 @@
             <div class="swiper-button-prev hidden"/>
             <div class="swiper-button-next hidden"/>
             <div class="swiper-wrapper">
-              <div class="swiper-slide">
+              <!-- <div class="swiper-slide">
                 <div class="banner-shortcode style-2">
                   <div class="content">
-                    <!-- style="background-image: url(/././img/thumbnail-11.jpg);" -->
+                    style="background-image: url(/././img/thumbnail-11.jpg);"
                     <div class="background"/>
                     <div class="description valign-middle">
                       <div class="valign-middle-content">
@@ -69,11 +69,11 @@
                     </div>
                   </div>
                 </div>
-              </div>
-              <div class="swiper-slide">
+              </div> -->
+              <!-- <div class="swiper-slide">
                 <div class="banner-shortcode style-2">
                   <div class="content">
-                    <!-- style="background-image: url(/././img/thumbnail-11.jpg);" -->
+                    style="background-image: url(/././img/thumbnail-11.jpg);"
                     <div class="background">
                       <div class="description valign-middle">
                         <div class="valign-middle-content">
@@ -113,7 +113,7 @@
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> -->
               <div class="swiper-pagination"/>
             </div>
 
@@ -152,7 +152,7 @@
           </div>
         </div>
 
-        <div class="row">
+        <!-- <div class="row">
           <div class="col-sm-6 col-md-12">
             <div class="h4 col-xs-b25">feature products</div>
             <div class="swiper-container">
@@ -343,7 +343,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
 
     </div>
@@ -375,7 +375,9 @@ export default {
                 .then( ({data}) => {(this.categories = data);})
                 .catch()
         },
-        
+        searchByCategory(categoryId) {
+            this.$store.state.categoryId = categoryId;
+        }  
     }
 
 }
