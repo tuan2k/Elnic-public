@@ -532,6 +532,14 @@
       </div>
       <div class="empty-space col-xs-b35 col-md-b70"/>
 
+      <div class="paginationheo">
+        <p v-on:click="getProByPage(1)" class="btn btn-primary">&laquo;</p>
+        <span v-for="(p,index) in pg" :key="p">
+        <p href="#" class="active btn btn-primary" v-on:click="getProByPage(index+1)">{{ index + 1}}</p>
+        </span>
+        <p v-on:click="getProByPage(pg.length)" class="btn btn-primary">&raquo;</p>
+      </div>
+
       <!-- <div
         class="swiper-container arrows-align-top"
         data-breakpoints="1"
@@ -1403,15 +1411,23 @@ export default {
             products: [],
             carts: [],
             searchTerm: '',
-            rows: 3,
-            perPage: 5,
-            currentPage: 1
+            pages: '',
+            pg : [],
+            perPage: 4,
+            currentPage: 1,
+            temp : [],
         }
     },
     methods: {
         allProduct(){
             axios.get('https://elnic-api.herokuapp.com/api/product')
-                .then( ({data}) => {(this.products = data); this.$store.state.products = data})
+                .then( ({data}) => {
+                  this.products = data; 
+                  this.$store.state.products = data
+                  this.pages = Math.ceil(this.products.length/this.perPage) ;
+                  this.pg.length = this.pages;
+                  this.$store.state.pages = this.pages;
+                })
                 .catch()
         },
         addToCart(product) {
@@ -1420,6 +1436,17 @@ export default {
                     title: 'Add to cart successfully'
           });
           this.$store.dispatch("addToCart", product);
+        },
+        getProByPage(numPage) {
+          this.$store.state.categoryId = '';
+          this.temp = [];
+            for (let i=0;i<this.$store.state.products.length;i++) {
+                if ( this.perPage*(numPage-1) <= i && i < this.perPage*numPage) {
+                  this.temp.push(this.$store.state.products[i]);
+                }
+            }
+            this.products = [];
+            this.products = this.temp;
         },
         deleteUser(id){
             Swal.fire({
@@ -1454,3 +1481,18 @@ export default {
 
 }
  </script>
+ <style scoped>
+ .paginationheo {
+  display: inline-block;
+  margin-left: 300px;
+}
+
+.paginationheo p {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+.paginationheo a:hover:not(.active) {background-color: #ddd;}
+
+ </style>

@@ -11,6 +11,9 @@ export const store = new Vuex.Store({
         products: [],
         total: 0,
         categoryId: '',
+        pages: 0,
+        perPage: 4,
+        currentPage: 1,
     },
     getters: {
         doneTodos: state => {
