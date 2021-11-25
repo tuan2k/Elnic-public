@@ -44,6 +44,7 @@ export const store = new Vuex.Store({
         removeItem(state, payload) {
             let itemIndex = state.cartItems.findIndex(el => el._id === payload)
             state.cartItems.filter( el => el._id !== payload)
+            state.cartItemCount--;
             state.cartQuantity.splice(itemIndex,1);
             state.cartItems.splice(itemIndex,1);
         },
@@ -66,6 +67,7 @@ export const store = new Vuex.Store({
                     }
                 }
             }
+            console.log(state.total);
         }
 
     },

@@ -295,13 +295,12 @@ export default {
   },
   data () {
       return {
-         form : {
+        carts : [],
+        quantity: [],
+        products: [],
+        form : {
 
-         },
-          carts : [],
-          quantity: [],
-          products: [],
-          total: 0,
+        },
       }
   },
   computed : {
@@ -320,7 +319,7 @@ export default {
         this.$store.dispatch("getTotal");
       },
       getProduct(){
-         for (let i =0 ; i< carts.length; i++) {
+         for (let i =0 ; i< this.carts.length; i++) {
               this.products.push(this.carts[i])
               for (let j=0;j< this.quantity.length;j++){
                   if (i===j) {

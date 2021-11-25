@@ -24,15 +24,15 @@
                   <div class="h6 animate-to-green"><a href="#">Smartphone vibe x2</a></div>
                 </div>
                 <div class="preview">
-                  <img :src="product.productImgs[0]" alt="" />
+                  <img :src="product.productThambnail" alt="" />
                   <div class="preview-buttons valign-middle">
                     <div class="valign-middle-content">
-                      <a class="button size-2 style-2" href="#">
+                      <router-link class="button size-2 style-2" :to="{ name: 'product-detail', params: {id: product._id}}">
                         <span class="button-wrapper">
                           <span class="icon"><img src="/static/img/icon-1.png" alt=""></span>
                           <span class="text">Learn More</span>
                         </span>
-                      </a>
+                      </router-link>
                       <p class="button size-2 style-3" v-on:click="addToCart(product)">
                         <span class="button-wrapper">
                           <span class="icon"><img src="/static/img/icon-3.png" alt=""></span>
@@ -43,7 +43,7 @@
                   </div>
                 </div>
                 <div class="price">
-                  <div class="simple-article size-4 dark">$630.00</div>
+                  <div class="simple-article size-4 dark">VND {{ product.sellingPrice }}</div>
                 </div>
                 <div class="description">
                   <div class="simple-article text size-2">Mollis nec consequat at In feugiat mole stie tortor a malesuada</div>
