@@ -5,7 +5,21 @@ import App from './App'
 import router from './router'
 import User from './storage/User'
 import Notification from './storage/Notification'
+import {store}  from './storage/store'
 import Swal from "sweetalert2";
+import Vuex from 'vuex'
+import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
+
+// Import Bootstrap an BootstrapVue CSS files (order is important)
+import 'bootstrap-vue/dist/bootstrap-vue.css'
+
+
+// Make BootstrapVue available throughout your project
+Vue.use(BootstrapVue)
+// Optionally install the BootstrapVue icon components plugin
+Vue.use(IconsPlugin)
+
+Vue.use(Vuex)
 
 Vue.config.productionTip = false
 
@@ -32,6 +46,7 @@ window.Toast = Toast;
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>'
 })

@@ -3,8 +3,8 @@
     <div class="col-md-3 col-md-pull-9">
       <div class="h4 col-xs-b25">popular categories</div>
       <ul class="categories-menu">
-        <li>
-          <a href="#">laptops &amp; computers</a>
+        <li v-for="category in categories" :key="category._id">
+          <a v-on:click="searchByCategory(category._id)">{{ category.categoryName }}</a>
           <div class="toggle"/>
           <ul>
             <li>
@@ -44,228 +44,6 @@
               <a href="#">gadgets</a>
             </li>
           </ul>
-        </li>
-        <li>
-          <a href="#">video &amp; photo cameras</a>
-          <div class="toggle"/>
-          <ul>
-            <li>
-              <a href="#">laptops &amp; computers</a>
-              <div class="toggle"/>
-              <ul>
-                <li>
-                  <a href="#">laptops &amp; computers</a>
-                </li>
-                <li>
-                  <a href="#">video &amp; photo cameras</a>
-                </li>
-                <li>
-                  <a href="#">smartphones</a>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <a href="#">video &amp; photo cameras</a>
-              <div class="toggle"/>
-              <ul>
-                <li>
-                  <a href="#">laptops &amp; computers</a>
-                </li>
-                <li>
-                  <a href="#">smartphones</a>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <a href="#">smartphones</a>
-            </li>
-            <li>
-              <a href="#">tv &amp; audio</a>
-            </li>
-            <li>
-              <a href="#">gadgets</a>
-            </li>
-          </ul>
-        </li>
-        <li>
-          <a href="#">smartphones</a>
-          <div class="toggle"/>
-          <ul>
-            <li>
-              <a href="#">laptops &amp; computers</a>
-              <div class="toggle"/>
-              <ul>
-                <li>
-                  <a href="#">laptops &amp; computers</a>
-                </li>
-                <li>
-                  <a href="#">video &amp; photo cameras</a>
-                </li>
-                <li>
-                  <a href="#">smartphones</a>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <a href="#">video &amp; photo cameras</a>
-              <div class="toggle"/>
-              <ul>
-                <li>
-                  <a href="#">video &amp; photo cameras</a>
-                </li>
-                <li>
-                  <a href="#">smartphones</a>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <a href="#">smartphones</a>
-            </li>
-            <li>
-              <a href="#">tv &amp; audio</a>
-            </li>
-            <li>
-              <a href="#">gadgets</a>
-            </li>
-          </ul>
-        </li>
-        <li>
-          <a href="#">tv &amp; audio</a>
-          <div class="toggle"/>
-          <ul>
-            <li>
-              <a href="#">laptops &amp; computers</a>
-              <div class="toggle"/>
-              <ul>
-                <li>
-                  <a href="#">laptops &amp; computers</a>
-                </li>
-                <li>
-                  <a href="#">video &amp; photo cameras</a>
-                </li>
-                <li>
-                  <a href="#">smartphones</a>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <a href="#">video &amp; photo cameras</a>
-              <div class="toggle"/>
-              <ul>
-                <li>
-                  <a href="#">video &amp; photo cameras</a>
-                </li>
-                <li>
-                  <a href="#">smartphones</a>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <a href="#">smartphones</a>
-            </li>
-            <li>
-              <a href="#">tv &amp; audio</a>
-            </li>
-            <li>
-              <a href="#">gadgets</a>
-            </li>
-          </ul>
-        </li>
-        <li>
-          <a href="#">gadgets</a>
-          <div class="toggle"/>
-          <ul>
-            <li>
-              <a href="#">laptops &amp; computers</a>
-              <div class="toggle"/>
-              <ul>
-                <li>
-                  <a href="#">laptops &amp; computers</a>
-                </li>
-                <li>
-                  <a href="#">video &amp; photo cameras</a>
-                </li>
-                <li>
-                  <a href="#">smartphones</a>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <a href="#">video &amp; photo cameras</a>
-              <div class="toggle"/>
-              <ul>
-                <li>
-                  <a href="#">video &amp; photo cameras</a>
-                </li>
-                <li>
-                  <a href="#">smartphones</a>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <a href="#">smartphones</a>
-            </li>
-            <li>
-              <a href="#">tv &amp; audio</a>
-            </li>
-            <li>
-              <a href="#">gadgets</a>
-            </li>
-          </ul>
-        </li>
-        <li>
-          <a href="#">car electronics</a>
-          <div class="toggle"/>
-          <ul>
-            <li>
-              <a href="#">laptops &amp; computers</a>
-              <div class="toggle"/>
-              <ul>
-                <li>
-                  <a href="#">laptops &amp; computers</a>
-                </li>
-                <li>
-                  <a href="#">video &amp; photo cameras</a>
-                </li>
-                <li>
-                  <a href="#">smartphones</a>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <a href="#">video &amp; photo cameras</a>
-              <div class="toggle"/>
-              <ul>
-                <li>
-                  <a href="#">video &amp; photo cameras</a>
-                </li>
-                <li>
-                  <a href="#">smartphones</a>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <a href="#">smartphones</a>
-            </li>
-            <li>
-              <a href="#">tv &amp; audio</a>
-            </li>
-            <li>
-              <a href="#">gadgets</a>
-            </li>
-          </ul>
-        </li>
-        <li>
-          <a href="#">video games &amp; consoles</a>
-        </li>
-        <li>
-          <a href="#">software</a>
-        </li>
-        <li>
-          <a href="#">offeci accessories</a>
-        </li>
-        <li>
-          <a href="#">accessories</a>
         </li>
       </ul>
 
@@ -277,10 +55,10 @@
             <div class="swiper-button-prev hidden"/>
             <div class="swiper-button-next hidden"/>
             <div class="swiper-wrapper">
-              <div class="swiper-slide">
+              <!-- <div class="swiper-slide">
                 <div class="banner-shortcode style-2">
                   <div class="content">
-                    <!-- style="background-image: url(/././img/thumbnail-11.jpg);" -->
+                    style="background-image: url(/././img/thumbnail-11.jpg);"
                     <div class="background"/>
                     <div class="description valign-middle">
                       <div class="valign-middle-content">
@@ -291,11 +69,11 @@
                     </div>
                   </div>
                 </div>
-              </div>
-              <div class="swiper-slide">
+              </div> -->
+              <!-- <div class="swiper-slide">
                 <div class="banner-shortcode style-2">
                   <div class="content">
-                    <!-- style="background-image: url(/././img/thumbnail-11.jpg);" -->
+                    style="background-image: url(/././img/thumbnail-11.jpg);"
                     <div class="background">
                       <div class="description valign-middle">
                         <div class="valign-middle-content">
@@ -335,7 +113,7 @@
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> -->
               <div class="swiper-pagination"/>
             </div>
 
@@ -374,7 +152,7 @@
           </div>
         </div>
 
-        <div class="row">
+        <!-- <div class="row">
           <div class="col-sm-6 col-md-12">
             <div class="h4 col-xs-b25">feature products</div>
             <div class="swiper-container">
@@ -565,15 +343,42 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
 
     </div>
   </div>
 </template>
-
-<script>
+<script type="text/javascript">
+import axios from 'axios';
 export default {
-  name: 'ElnicSidebar'
-};
+  name: 'ElnicSidebar',
+    created() {
+        this.allCategory();
+    },
+    computed:{
+        filtersearch(){
+            return this.products.filter(product => {
+                return product.productName.match(this.searchTerm);
+            })
+        }
+    },
+    data() {
+        return {
+            categories: [],
+            searchTerm: ''
+        }
+    },
+    methods: {
+        allCategory() {
+            axios.get('https://elnic-api.herokuapp.com/api/categories')
+                .then( ({data}) => {(this.categories = data);})
+                .catch()
+        },
+        searchByCategory(categoryId) {
+            this.$store.state.categoryId = categoryId;
+        }  
+    }
+
+}
 </script>

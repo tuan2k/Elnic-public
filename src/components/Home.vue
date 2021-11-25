@@ -17,7 +17,7 @@
           <div class="row nopadding">
             
           
-          <div class="col-sm-4" v-for="product in products" :key="product._id">
+          <div class="col-sm-4" v-for="product in filtersearch" :key="product._id">
               <div class="product-shortcode style-1">
                 <div class="title">
                   <div class="simple-article size-1 color col-xs-b5"><a href="#">{{ product.productName }}</a></div>
@@ -33,12 +33,12 @@
                           <span class="text">Learn More</span>
                         </span>
                       </a>
-                      <a class="button size-2 style-3" href="#">
+                      <p class="button size-2 style-3" v-on:click="addToCart(product)">
                         <span class="button-wrapper">
                           <span class="icon"><img src="/static/img/icon-3.png" alt=""></span>
                           <span class="text">Add To Cart</span>
                         </span>
-                      </a>
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -530,10 +530,17 @@
           </div>
         </div>
       </div>
-
       <div class="empty-space col-xs-b35 col-md-b70"/>
 
-      <div
+      <div class="paginationheo">
+        <p v-on:click="getProByPage(1)" class="btn btn-primary">&laquo;</p>
+        <span v-for="(p,index) in pg" :key="p">
+        <p href="#" class="active btn btn-primary" v-on:click="getProByPage(index+1)">{{ index + 1}}</p>
+        </span>
+        <p v-on:click="getProByPage(pg.length)" class="btn btn-primary">&raquo;</p>
+      </div>
+
+      <!-- <div
         class="swiper-container arrows-align-top"
         data-breakpoints="1"
         data-xs-slides="1"
@@ -644,11 +651,11 @@
           </div>
         </div>
         <div class="swiper-pagination relative-pagination visible-xs"/>
-      </div>
+      </div> -->
 
       <div class="empty-space col-xs-b35 col-md-b70"/>
 
-      <div class="swiper-container arrows-align-top">
+      <!-- <div class="swiper-container arrows-align-top">
         <div class="h4 swiper-title">people choice</div>
         <div class="empty-space col-xs-b20"/>
         <div class="swiper-button-prev style-1"/>
@@ -696,11 +703,11 @@
           </div>
         </div>
         <div class="swiper-pagination visible-xs"/>
-      </div>
+      </div> -->
 
-      <div class="empty-space col-xs-b35 col-md-b70"/>
+      <!-- <div class="empty-space col-xs-b35 col-md-b70"/> -->
 
-      <div
+      <!-- <div
         class="swiper-container arrows-align-top"
         data-breakpoints="1"
         data-xs-slides="1"
@@ -931,9 +938,9 @@
           </div>
         </div>
         <div class="swiper-pagination relative-pagination visible-xs"/>
-      </div>
+      </div> -->
 
-      <div class="empty-space col-xs-b35 col-md-b70"/>
+      <!-- <div class="empty-space col-xs-b35 col-md-b70"/> -->
 
       <div class="tabs-block">
         <div class="row">
@@ -1385,7 +1392,6 @@
     </div>
   </div>
 </template>
-
 <script type="text/javascript">
 import axios from 'axios';
 export default {
@@ -1394,22 +1400,53 @@ export default {
     },
     computed:{
         filtersearch(){
+            let categoryId = this.$store.state.categoryId;
             return this.products.filter(product => {
-                return product.productName.match(this.searchTerm);
+                return product.categoriesId.match(categoryId);
             })
         }
     },
     data() {
         return {
             products: [],
-            searchTerm: ''
+            carts: [],
+            searchTerm: '',
+            pages: '',
+            pg : [],
+            perPage: 4,
+            currentPage: 1,
+            temp : [],
         }
     },
     methods: {
         allProduct(){
             axios.get('https://elnic-api.herokuapp.com/api/product')
-                .then( ({data}) => {(this.products = data);})
+                .then( ({data}) => {
+                  this.products = data; 
+                  this.$store.state.products = data
+                  this.pages = Math.ceil(this.products.length/this.perPage) ;
+                  this.pg.length = this.pages;
+                  this.$store.state.pages = this.pages;
+                })
                 .catch()
+        },
+        addToCart(product) {
+          Toast.fire({
+                    icon: 'success',
+                    title: 'Add to cart successfully'
+          });
+          this.$store.dispatch("addToCart", product);
+        },
+        getProByPage(numPage) {
+          this.$store.state.categoryId = '';
+          this.temp = [];
+            for (let i=0;i<this.$store.state.products.length;i++) {
+                if ( this.perPage*(numPage-1) <= i && i < this.perPage*numPage) {
+                  this.temp.push(this.$store.state.products[i]);
+                }
+            }
+            this.products = [];
+            this.products = this.temp;
         },
         deleteUser(id){
             Swal.fire({
@@ -1443,4 +1480,19 @@ export default {
     }
 
 }
-</script>
+ </script>
+ <style scoped>
+ .paginationheo {
+  display: inline-block;
+  margin-left: 300px;
+}
+
+.paginationheo p {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+.paginationheo a:hover:not(.active) {background-color: #ddd;}
+
+ </style>
