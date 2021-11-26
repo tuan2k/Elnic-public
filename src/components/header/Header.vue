@@ -28,7 +28,6 @@
                                         <i class="fa fa-shopping-bag" aria-hidden="true"></i>
                                         <span class="cart-label">{{count}}</span>
                                     </span>
-                                    <span class="cart-title hidden-xs">{{ total }}</span>
                                 </router-link>
                                 <div class="cart-toggle hidden-xs hidden-sm">
                                     <div class="cart-overflow" v-for="(cart,index) in carts" :key="cart._id">
@@ -64,18 +63,13 @@
                                     </div>
                                     <div class="empty-space col-xs-b40"></div>
                                     <div class="row">
-                                        <div class="col-xs-6">
-                                            <div class="cell-view empty-space col-xs-b50">
-                                                <div class="simple-article size-5 grey">TOTAL <span class="color">VND {{ total }}</span></div>
-                                            </div>
-                                        </div>
                                         <div class="col-xs-6 text-right">
-                                            <a class="button size-2 style-3" href="checkout1.html">
+                                            <router-link class="button size-2 style-3" to="/checkout">
                                                 <span class="button-wrapper">
                                                     <span class="icon"><img src="img/icon-4.png" alt=""></span>
                                                     <span class="text">proceed to checkout</span>
                                                 </span>
-                                            </a>
+                                            </router-link>
                                         </div>
                                     </div>
                                 </div>
@@ -554,7 +548,6 @@ export default {
   created() {
       this.getCartItems();
       this.getQuantity();
-      this.getTotal();
       this.getProduct()
   },
    data () {
@@ -570,9 +563,6 @@ export default {
   computed: {
       count() {
           return this.$store.state.cartItemCount;
-      },
-      total() {
-          return this.$store.state.total;
       }
   },
   methods : {
@@ -581,9 +571,6 @@ export default {
       },
       getQuantity() {
           this.quantity = this.$store.state.cartQuantity;
-      },
-      getTotal(){
-        this.$store.dispatch("getTotal");
       },
       getProduct(){
          for (let i =0 ; i< this.carts.length; i++) {

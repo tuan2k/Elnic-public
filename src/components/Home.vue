@@ -1397,6 +1397,7 @@ import axios from 'axios';
 export default {
     created() {
         this.allProduct();
+        this.total = this.$store.state.total;
     },
     computed:{
         filtersearch(){
@@ -1416,6 +1417,7 @@ export default {
             perPage: 4,
             currentPage: 1,
             temp : [],
+            total: 0
         }
     },
     methods: {
