@@ -28,22 +28,25 @@
                                         <i class="fa fa-shopping-bag" aria-hidden="true"></i>
                                         <span class="cart-label">{{count}}</span>
                                     </span>
-                                    <span class="cart-title hidden-xs">$1195.00</span>
                                 </router-link>
                                 <div class="cart-toggle hidden-xs hidden-sm">
-                                    <div class="cart-overflow">
+                                    <div class="cart-overflow" v-for="(cart,index) in carts" :key="cart._id">
                                         <div class="cart-entry clearfix">
-                                            <a class="cart-entry-thumbnail" href="#"><img src="img/product-1.png" alt="" /></a>
+                                            <a class="cart-entry-thumbnail" href="#"><img id="heo_image" :src="cart.productThambnail" alt="" /></a>
                                             <div class="cart-entry-description">
                                                 <table>
                                                     <tr>
                                                         <td>
-                                                            <div class="h6"><a href="#">modern beat ht</a></div>
-                                                            <div class="simple-article size-1">QUANTITY: 2</div>
+                                                            <div class="h6"><a href="#">{{ cart.productName }}</a></div>
+                                                            <div class="simple-article size-1" v-for="(qt,i) in quantity" :key="qt[index]">
+                                                                <span v-if="i === index">QUANTITY: {{ qt }}</span>
+                                                            </div>
                                                         </td>
                                                         <td>
-                                                            <div class="simple-article size-3 grey">$155.00</div>
-                                                            <div class="simple-article size-1">TOTAL: $310.00</div>
+                                                            <div class="simple-article size-3 grey">{{ cart.discountPrice}}</div>
+                                                            <div v-for="(qt,ind) in quantity" :key="qt[index]" class="simple-article size-1">
+                                                            <span v-if="ind === index ">TOTAL: {{ cart.discountPrice*qt }}</span>
+                                                            </div>
                                                         </td>
                                                         <td>
                                                             <div class="cart-color" style="background: #eee;"></div>
@@ -55,67 +58,18 @@
                                                 </table>
                                             </div>
                                         </div>
-                                        <div class="cart-entry clearfix">
-                                            <a class="cart-entry-thumbnail" href="#"><img src="img/product-2.png" alt="" /></a>
-                                            <div class="cart-entry-description">
-                                                <table>
-                                                    <tr>
-                                                        <td>
-                                                            <div class="h6"><a href="#">modern beat ht</a></div>
-                                                            <div class="simple-article size-1">QUANTITY: 2</div>
-                                                        </td>
-                                                        <td>
-                                                            <div class="simple-article size-3 grey">$155.00</div>
-                                                            <div class="simple-article size-1">TOTAL: $310.00</div>
-                                                        </td>
-                                                        <td>
-                                                            <div class="cart-color" style="background: #bf584b;"></div>
-                                                        </td>
-                                                        <td>
-                                                            <div class="button-close"></div>
-                                                        </td>
-                                                    </tr>
-                                                </table>
-                                            </div>
-                                        </div>
-                                        <div class="cart-entry clearfix">
-                                            <a class="cart-entry-thumbnail" href="#"><img src="img/product-3.png" alt="" /></a>
-                                            <div class="cart-entry-description">
-                                                <table>
-                                                    <tr>
-                                                        <td>
-                                                            <div class="h6"><a href="#">modern beat ht</a></div>
-                                                            <div class="simple-article size-1">QUANTITY: 2</div>
-                                                        </td>
-                                                        <td>
-                                                            <div class="simple-article size-3 grey">$155.00</div>
-                                                            <div class="simple-article size-1">TOTAL: $310.00</div>
-                                                        </td>
-                                                        <td>
-                                                            <div class="cart-color" style="background: #facc22;"></div>
-                                                        </td>
-                                                        <td>
-                                                            <div class="button-close"></div>
-                                                        </td>
-                                                    </tr>
-                                                </table>
-                                            </div>
-                                        </div>
+                                       
+                                        
                                     </div>
                                     <div class="empty-space col-xs-b40"></div>
                                     <div class="row">
-                                        <div class="col-xs-6">
-                                            <div class="cell-view empty-space col-xs-b50">
-                                                <div class="simple-article size-5 grey">TOTAL <span class="color">$1195.00</span></div>
-                                            </div>
-                                        </div>
                                         <div class="col-xs-6 text-right">
-                                            <a class="button size-2 style-3" href="checkout1.html">
+                                            <router-link class="button size-2 style-3" to="/checkout">
                                                 <span class="button-wrapper">
                                                     <span class="icon"><img src="img/icon-4.png" alt=""></span>
                                                     <span class="text">proceed to checkout</span>
                                                 </span>
-                                            </a>
+                                            </router-link>
                                         </div>
                                     </div>
                                 </div>
@@ -591,10 +545,49 @@
 <script>
 export default {
   name: 'ElnicHeader',
+  created() {
+      this.getCartItems();
+      this.getQuantity();
+      this.getProduct()
+  },
+   data () {
+      return {
+        carts : [],
+        quantity: [],
+        products: [],
+        form : {
+
+        },
+      }
+  },
   computed: {
       count() {
           return this.$store.state.cartItemCount;
       }
+  },
+  methods : {
+       getCartItems() {
+          this.carts = this.$store.state.cartItems;
+      },
+      getQuantity() {
+          this.quantity = this.$store.state.cartQuantity;
+      },
+      getProduct(){
+         for (let i =0 ; i< this.carts.length; i++) {
+              this.products.push(this.carts[i])
+              for (let j=0;j< this.quantity.length;j++){
+                  if (i===j) {
+                       this.products[i].cartNumber = this.quantity[j];
+                  }
+              }
+         }
+      }
   }
 };
 </script>
+<style scoped>
+#heo_image {
+  width: 70px;
+  height: 70px;
+}
+</style>

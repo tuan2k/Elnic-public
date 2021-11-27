@@ -8,6 +8,8 @@ import Cart from '../components/cart/index'
 import Contact from '../components/contact/index'
 import About from '../components/about/index'
 import Checkout from '../components/checkout/index'
+import ProductDetail from '../components/product/detail'
+import History from '../components/history/index'
 
 
 
@@ -45,7 +47,17 @@ export default new Router({
             path: '/contact',
             name: 'contact',
             component: Contact,
-          }    
+          },
+          {
+            path: '/product/:id',
+            name: 'product-detail',
+            component: ProductDetail,
+          } ,
+          {
+            path: '/history/:id',
+            name: 'history',
+            component: History,
+          }        
       ]
     },
     {
