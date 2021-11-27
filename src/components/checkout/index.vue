@@ -29,7 +29,7 @@
           </select>
           <div class="empty-space col-xs-b20"/>
           <input
-           v-model="form.fullname"
+           v-model="form.fullName"
             class="simple-input"
             type="text"
             value=""
@@ -166,7 +166,7 @@ export default {
         products: [],
         form : {
               email: '',
-              fullname: '',
+              fullName: '',
               address: '',
               phone: '',
               productList: []
@@ -203,10 +203,9 @@ export default {
          }
       },
       Submit() {
-        console.log(this.form);
          axios.post('https://elnic-api.herokuapp.com/api/orders',this.form)
           .then( (response) => {
-            console.log(response.data.userId);
+            console.log(response.data._id);
             this.$router.push({ name: 'history',params:{id: response.data.userId}})
           })
           .catch()

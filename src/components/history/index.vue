@@ -21,8 +21,9 @@
         <thead>
           <tr>
             <th style="width: 95px;"/>
-            <th>Email</th>
+            <th>Full Name</th>
             <th>Phone</th>
+            <th>Status Payment</th>
             <th>Payment</th>
           </tr>
         </thead>
@@ -31,10 +32,14 @@
             <td data-title=" ">
               <a class="cart-entry-thumbnail" href="#"><img src="/../../img//product-1.png" alt=""></a>
             </td>
-            <td data-title=" "><h6 class="h6"><a href="#">{{ order.email }}</a></h6></td>
-            <td data-title=" "><h6 class="h6"><a href="#">{{ order.phone }}</a></h6></td>
-            <td data-title="Payment: ">
-              <div ref="paypal"></div>
+            <td><h6 class="h6">{{ order.fullName }}</h6></td>
+            <td><h6 class="h6">{{ order.phone }}</h6></td>
+            <td>
+                 <span v-if="order.status === true" class="h6">Đã thanh toán</span>  
+                 <span class="h6" v-else>Chưa thanh toán</span>
+            </td>
+            <td>
+              <div ref="paypal" v-if="order.status !== true"></div>
             </td>
           </tr>
         </tbody>
@@ -81,6 +86,10 @@ export default {
   data () {
       return {
           order : [],
+          form : {
+              status: '',
+              transactionId: ''
+          },
           total: '',
           loaded: false,
           paidFor: false,
@@ -108,22 +117,24 @@ export default {
                   description: this.product.description,
                   amount: {
                     currency_code: "USD",
-                    value: this.total
+                    value: 17
                   }
                 }
               ]
             });
           },
           onApprove: async (data, actions) => {
-            const order = await actions.order.capture();
+            const orders = await actions.order.capture();
             this.data;
             this.paidFor = true;
-            console.log(order);
+            console.log(orders);
             Toast.fire({
                     icon: 'success',
-                    title: 'Add to cart successfully'
+                    title: 'Payment successfully'
             });
-            axios.put('https://elnic-api.herokuapp.com/api/orders/getByUserId/'+id)
+            this.form.status = true;
+            this.form.transactionId = orders.id; 
+            axios.put('https://elnic-api.herokuapp.com/api/orders/'+this.order._id, this.form)
             .then( ({data}) => {
                         this.order = data[0];
                         console.log(this.order);
