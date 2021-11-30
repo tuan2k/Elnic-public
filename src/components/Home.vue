@@ -24,7 +24,7 @@
                   <div class="h6 animate-to-green"><a href="#">Smartphone vibe x2</a></div>
                 </div>
                 <div class="preview">
-                  <img :src="product.productThambnail" alt="" />
+                  <img :src="product.productThambnail" alt="" style="weight:200px;height:200px" />
                   <div class="preview-buttons valign-middle">
                     <div class="valign-middle-content">
                       <router-link class="button size-2 style-2" :to="{ name: 'product-detail', params: {id: product._id}}">
