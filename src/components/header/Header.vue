@@ -149,7 +149,7 @@
                       <router-link to="/">Home</router-link>
                     </li>
                     <li>
-                      <a href="#" @click="onClickAboutUs">about us</a>
+                      <a href="#">about us</a>
                     </li>
 
                     <li>
@@ -438,17 +438,19 @@
 </template>
 
 <script>
-import Login from "../auth/login.vue";
-import Register from "../auth/register.vue";
 export default {
   name: "ElnicHeader",
-  components: { Login, Register },
   created() {
     this.getCartItems();
     this.getQuantity();
     this.getProduct();
     this.username = this.$store.state.username;
     console.log(this.username);
+  },
+  computed: {
+     count(){
+       return this.$store.state.cartItemCount;
+     }
   },
   data() {
     return {
@@ -459,29 +461,26 @@ export default {
       form: {}
     };
   },
-  onClickRegister() {
-    this.showRegister = true;
-  },
-
-  getCartItems() {
+  methods: {
+      getCartItems() {
     this.carts = this.$store.state.cartItems;
   },
-  getQuantity() {
-    this.quantity = this.$store.state.cartQuantity;
-  },
-  getProduct() {
-    for (let i = 0; i < this.carts.length; i++) {
-      this.products.push(this.carts[i]);
-      for (let j = 0; j < this.quantity.length; j++) {
-        if (i === j) {
-          this.products[i].cartNumber = this.quantity[j];
+    getQuantity() {
+      this.quantity = this.$store.state.cartQuantity;
+    },
+    getProduct() {
+      for (let i = 0; i < this.carts.length; i++) {
+        this.products.push(this.carts[i]);
+        for (let j = 0; j < this.quantity.length; j++) {
+          if (i === j) {
+            this.products[i].cartNumber = this.quantity[j];
+          }
         }
       }
-    }
   },
-  onClickAboutUs() {
-    this.$router.push({ name: "about" });
   }
+
+  
 };
 </script>
 <style scoped>
