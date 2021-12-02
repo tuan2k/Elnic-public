@@ -1838,26 +1838,8 @@ export default {
       total: 0
     };
   },
-  // methods: {
-  //   allProduct() {
-  //     axios
-  //       .get("https://elnic-api.herokuapp.com/api/product")
-  //       .then(({ data }) => {
-  //         this.products = data;
-  //         this.$store.state.products = data;
-  //         this.pages = Math.ceil(this.products.length / this.perPage);
-  //         this.pg.length = this.pages;
-  //         this.$store.state.pages = this.pages;
-  //       })
-  //       .catch();
-  //   },
-  //           currentValue: "",
-  //           currentOptions: [],
-  //           proName: '',
-  //         }
-  //   },
   methods: {
-    allProduct: async function() {
+    async allProduct() {
       await axios
         .get("https://elnic-api.herokuapp.com/api/product")
         .then(({ data }) => {
@@ -1870,7 +1852,7 @@ export default {
           this.$store.state.pages = this.pages;
           this.products = this.products.slice(0, 9);
         })
-        .catch();
+        .catch(error => console.log(error));
       for (var i = 0; i < this.products.length; i++) {
         const obj = {
           text: this.products[i].productName,
