@@ -1,12 +1,12 @@
 <template>
-  <div>
-     <header>
+    <div>
+        <header>
             <div class="header-top">
                 <div class="content-margins">
                     <div class="row">
                         <div class="col-md-5 hidden-xs hidden-sm">
-                            <div class="entry"><b>contact us:</b> <a href="tel:">(+84) 898325907</a></div>
-                            <div class="entry"><b>email:</b> <a href="mailto:office@exzo.com">elnic@exzo.com</a></div>
+                            <div class="entry"><b>contact us:</b> <a href="tel:+84898325907">(+84) 898325907</a></div>
+                            <div class="entry"><b>email:</b> <a href="mailto:elnic@business.com">elnic@business.com</a></div>
                         </div>
                         <div class="col-md-7 col-md-text-right">
                             <div class="entry"><router-link to="/login" class="open-popup" data-rel="1"><b>login</b>
@@ -14,13 +14,13 @@
                             <div class="entry language">
                                 <div class="title"><b>en</b></div>
                                 <div class="language-toggle header-toggle-animation">
-                                    <a href="index1.html">fr</a>
-                                    <a href="index1.html">ru</a>
-                                    <a href="index1.html">it</a>
-                                    <a href="index1.html">sp</a>
+                                    <a href="#">fr</a>
+                                    <a href="#">ru</a>
+                                    <a href="#">it</a>
+                                    <a href="#">sp</a>
                                 </div>
                             </div>
-                            <div class="entry hidden-xs hidden-sm"><a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a></div>
+                            <div class="entry hidden-xs hidden-sm"><a href="#"><img  src="../../../static/icons/heart-thin.svg" width="12px" height="12px" alt="heart" /></a></div>
                             <div class="entry hidden-xs hidden-sm cart">
                                 <router-link to="/cart">
                                     <b class="hidden-xs">Your bag</b>
@@ -87,7 +87,7 @@
                 <div class="content-margins">
                     <div class="row">
                         <div class="col-xs-3 col-sm-1">
-                            <a id="logo" href="index1.html"><img src="img/logo-2.png" alt="" /></a>  
+                            <a id="logo" href="#"><img src="img/logo-2.png" alt="" /></a>  
                         </div>
                         <div class="col-xs-9 col-sm-11 text-right">
                             <div class="nav-wrapper">
@@ -98,7 +98,7 @@
                                             <router-link to="/">Home</router-link>
                                             <div class="menu-toggle"></div>
                                             <ul>
-                                                <li class="active"><a href="index1.html">Homepage 1</a></li>
+                                                <li class="active"><a href="#">Homepage 1</a></li>
                                                 <li><a href="index2.html">Homepage 2</a></li>
                                                 <li><a href="index3.html">Homepage 3</a></li>
                                                 <li><a href="index4.html">Homepage 4</a></li>
@@ -107,7 +107,7 @@
                                             </ul>
                                         </li>
                                         <li>
-                                            <a href="about1.html">about us</a>
+                                            <a href="#" @click="onClickAboutUs">about us</a>
                                         </li>
                                         <li class="megamenu-wrapper">
                                             <a href="products1.html">products</a>
@@ -558,36 +558,39 @@ export default {
         form : {
 
         },
-      }
-  },
-  computed: {
-      count() {
-          return this.$store.state.cartItemCount;
-      }
-  },
-  methods : {
-       getCartItems() {
-          this.carts = this.$store.state.cartItems;
-      },
-      getQuantity() {
-          this.quantity = this.$store.state.cartQuantity;
-      },
-      getProduct(){
-         for (let i =0 ; i< this.carts.length; i++) {
-              this.products.push(this.carts[i])
-              for (let j=0;j< this.quantity.length;j++){
-                  if (i===j) {
-                       this.products[i].cartNumber = this.quantity[j];
-                  }
-              }
-         }
-      }
-  }
+        }
+    },
+    computed: {
+        count() {
+            return this.$store.state.cartItemCount;
+        }
+    },
+    methods : {
+    getCartItems() {
+        this.carts = this.$store.state.cartItems;
+    },
+    getQuantity() {
+        this.quantity = this.$store.state.cartQuantity;
+    },
+    getProduct(){
+        for (let i =0 ; i< this.carts.length; i++) {
+            this.products.push(this.carts[i])
+            for (let j=0;j< this.quantity.length;j++){
+                if (i===j) {
+                    this.products[i].cartNumber = this.quantity[j];
+                }
+            }
+        }
+    },
+    onClickAboutUs(){
+        this.$router.push({ name: 'about' })
+    }
+    }
 };
 </script>
 <style scoped>
 #heo_image {
-  width: 70px;
-  height: 70px;
+    width: 70px;
+    height: 70px;
 }
 </style>
