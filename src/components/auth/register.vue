@@ -1,130 +1,140 @@
 <template>
-  <div class="popup-content" data-rel="2">
-    <div class="layer-close"></div>
-    <div class="popup-container size-1">
-      <div class="popup-align">
-        <h3 class="h3 text-center">register</h3>
-        <div class="empty-space col-xs-b30"></div>
-        <input
-          class="simple-input"
-          type="text"
-          value=""
-          placeholder="Your name"
-        />
-        <div class="empty-space col-xs-b10 col-sm-b20"></div>
-        <input
-          class="simple-input"
-          type="text"
-          value=""
-          placeholder="Your email"
-        />
-        <div class="empty-space col-xs-b10 col-sm-b20"></div>
-        <input
-          class="simple-input"
-          type="password"
-          value=""
-          placeholder="Enter password"
-        />
-        <div class="empty-space col-xs-b10 col-sm-b20"></div>
-        <input
-          class="simple-input"
-          type="password"
-          value=""
-          placeholder="Repeat password"
-        />
-        <div class="empty-space col-xs-b10 col-sm-b20"></div>
-        <div class="row">
-          <div class="col-sm-7 col-xs-b10 col-sm-b0">
-            <div class="empty-space col-sm-b15"></div>
-            <label class="checkbox-entry">
-              <input type="checkbox" /><span
-                ><a href="#">Privacy policy agreement</a></span
-              >
-            </label>
+  <div>
+    <section class="vh-100">
+      <div class="container-fluid h-custom">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+          <div class="col-md-9 col-lg-6 col-xl-5">
+            <img
+              src="https://mdbootstrap.com/img/Photos/new-templates/bootstrap-login-form/draw2.png"
+              class="img-fluid"
+              alt="Sample image"
+            />
           </div>
-          <div class="col-sm-5 text-right">
-            <a class="button size-2 style-3" href="#">
-              <span class="button-wrapper">
-                <span class="icon"><img src="img/icon-4.png" alt=""/></span>
-                <span class="text">submit</span>
-              </span>
-            </a>
-          </div>
-        </div>
-        <div class="popup-or">
-          <span>or</span>
-        </div>
-        <div class="row m5">
-          <div class="col-sm-4 col-xs-b10 col-sm-b0">
-            <a class="button facebook-button size-2 style-4 block" href="#">
-              <span class="button-wrapper">
-                <span class="icon"><img src="img/icon-4.png" alt=""/></span>
-                <span class="text">facebook</span>
-              </span>
-            </a>
-          </div>
-          <div class="col-sm-4 col-xs-b10 col-sm-b0">
-            <a class="button twitter-button size-2 style-4 block" href="#">
-              <span class="button-wrapper">
-                <span class="icon"><img src="img/icon-4.png" alt=""/></span>
-                <span class="text">twitter</span>
-              </span>
-            </a>
-          </div>
-          <div class="col-sm-4">
-            <a class="button google-button size-2 style-4 block" href="#">
-              <span class="button-wrapper">
-                <span class="icon"><img src="img/icon-4.png" alt=""/></span>
-                <span class="text">google+</span>
-              </span>
-            </a>
+          <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+            <form @submit.prevent="register()">
+              <br />
+              <br />
+              <br />
+              <br />
+              <br />
+              <br />
+              <br />
+              <br />
+              <br />
+              <br />
+              <div class="form-outline mb-4">
+                <label class="form-label" for="form3Example3">User Name</label>
+                <input
+                  id="form3Example3"
+                  class="form-control form-control-lg"
+                  placeholder="Enter user name"
+                  v-model="form.username"
+                />
+              </div>
+
+              <br />
+              <br />
+
+              <div class="form-outline mb-3">
+                <label class="form-label" for="form3Example3"
+                  >Email address</label
+                >
+                <input
+                  type="email"
+                  id="form3Example4"
+                  class="form-control form-control-lg"
+                  placeholder="Enter Email"
+                  v-model="form.email"
+                />
+              </div>
+
+              <br />
+              <br />
+
+              <div class="form-outline mb-3">
+                <label class="form-label" for="form3Example4">Password</label>
+                <input
+                  type="password"
+                  id="form3Example4"
+                  class="form-control form-control-lg"
+                  placeholder="Enter password"
+                  v-model="form.password"
+                />
+              </div>
+
+              <br />
+              <br />
+
+              <div class="text-center text-lg-start mt-4 pt-2">
+                <button
+                  type="submit"
+                  class="btn btn-primary btn-lg"
+                  style="padding-left: 2.5rem; padding-right: 2.5rem;"
+                >
+                  Register
+                </button>
+              </div>
+            </form>
           </div>
         </div>
       </div>
-      <div class="button-close"></div>
-    </div>
+    </section>
   </div>
 </template>
 
 <script>
 import axios from "axios";
 export default {
-  name: "Register"
-  //   created() {
-  //         if (User.loggedIn()) {
-  //             this.$router.push({ name: 'home' })
-  //         }
-  //     },
-  //     data(){
-  //         return{
-  //             form:{
-  //                 username: null,
-  //                 password: null
-  //             },
-  //             errors : {}
-  //         }
-  //     },
-  //     methods: {
-  //         login() {
-  //             console.log(this.form.username + this.form.password)
-  //             axios.post('https://elnic.herokuapp.com/api/auth/signin',this.form)
-  //             .then(res => {
-  //                 console.log(res)
-  //                 User.responseAfterLogin(res)
-  //                 Toast.fire({
-  //                     icon: 'success',
-  //                     title: 'Signed in successfully'
-  //                 })
-  //                 this.$router.push({ name: 'home'})
-  //             })
-  //             .catch(error =>  {this.errors = error.response ; console.log(error)})
-  //             .catch(
-  //                 Toast.fire({
-  //                     icon: 'warning',
-  //                     title: 'Invalid Email or Password'
-  //                 })
-  //             )
-  //         }
-  //     }
+  name: "register",
+  created() {
+    if (User.loggedIn()) {
+      this.$router.push({ name: "home" });
+    }
+  },
+  data() {
+    return {
+      form: {
+        username: null,
+        password: null,
+        email: ""
+      },
+      errors: {}
+    };
+  },
+  methods: {
+    register() {
+      axios
+        .post("https://elnic.herokuapp.com/api/auth/signup", this.form)
+        .then(res => {
+          Toast.fire({
+            icon: "success",
+            title: "Signup  successfully"
+          });
+          this.$router.push({ name: "login" });
+        })
+        .catch(error => {
+          this.errors = error.response;
+          console.log(error);
+        })
+        .catch();
+    }
+  }
 };
 </script>
+<style scoped>
+.divider:after,
+.divider:before {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: #eee;
+}
+.h-custom {
+  height: calc(100% - 73px);
+}
+@media (max-width: 450px) {
+  .h-custom {
+    height: 100%;
+  }
+}
+</style>

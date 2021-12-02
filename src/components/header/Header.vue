@@ -367,6 +367,7 @@ export default {
   name: "ElnicHeader",
   components: { Login, Register },
   created() {
+<<<<<<< HEAD
     this.getCartItems();
     this.getQuantity();
     this.getProduct();
@@ -389,6 +390,24 @@ export default {
   methods: {
     onClickLogin() {
       this.showLogin = true;
+=======
+      this.getCartItems();
+      this.getQuantity();
+      this.getProduct()
+      this.username =this.$store.state.username;
+      console.log(this.username);
+  },
+   data () {
+      return {
+        carts : [],
+        quantity: [],
+        products: [],
+        username: '',
+        form : {
+
+        },
+        }
+>>>>>>> 5c6e87b632191b75bf99c0f671492a314d311ce0
     },
     onClickRegister() {
       this.showRegister = true;
