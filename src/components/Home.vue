@@ -6,7 +6,6 @@
         <div class="tab-entry visible">
           <div class="row nopadding">
             <label>Filter Auto Complete</label>
-
             <vue-infinite-autocomplete
               :data-source="currentOptions"
               :value="currentValue"
@@ -1817,6 +1816,7 @@ export default {
     this.allProduct();
     this.total = this.$store.state.total;
   },
+
   components: {
     "vue-infinite-autocomplete": VueInfiniteAutocomplete
   },
@@ -1867,7 +1867,7 @@ export default {
     };
   },
   methods: {
-    allProduct: async function() {
+    async allProduct() {
       await axios
         .get("https://elnic-api.herokuapp.com/api/product")
         .then(({ data }) => {
@@ -1896,126 +1896,50 @@ export default {
       });
       this.$store.dispatch("addToCart", product);
     },
-    components: {
-     "vue-infinite-autocomplete": VueInfiniteAutocomplete
+    getProByPage(numPage) {
+      this.$store.state.categoryId = "";
+      this.temp = [];
+      this.temp = this.$store.state.products;
+      this.temp = this.temp.slice(
+        (numPage - 1) * this.perPage,
+        (numPage - 1) * this.perPage + this.perPage
+      );
+      this.products = this.temp;
+      this.$store.state.categoryId = 1;
     },
-    computed:{
-        filtersearch(){
-            if (this.$store.state.categoryId !== 0 && this.$store.state.categoryId !== 1){
-                let categoryId = this.$store.state.categoryId;
-                if (this.products.length < this.size) {
-                  this.products = this.productsView
-                }
-                this.$store.state.categoryId = 1;
-                return this.products.filter(product => {
-                    return product.categoriesId.match(categoryId);
-                })
-            } else if( this.$store.state.categoryId === 1 ){
-                return this.products;
-            }
-            else if(this.$store.state.categoryId ===0) {
-                if ( this.products.length < this.size) {
-                    this.products = this.productsView;
-                }
-                this.$store.state.categoryId = 1;
-                return this.products.filter(product => {
-                    return product.productName.match(this.proName);
-                  })
-            }
-        }
-    },
-    data() {
-        return {
-            products: [],
-            productsView: [],
-            carts: [],
-            searchTerm: '',
-            pages: '',
-            pg : [],
-            size: 0,
-            perPage: 9,
-            currentPage: 1,
-            temp : [],
-            total: 0,
-            input: '',
-            currentValue: "",
-            currentOptions: [],
-            proName: '',
-          }
-    },
-    methods: {
-        allProduct: async function(){
-            await axios.get('https://elnic-api.herokuapp.com/api/product')
-                .then( ({data}) => {
-                  this.products = data;
-                  this.size = this.products.length;
-                  this.productsView = data;
-                  this.$store.state.products = data
-                  this.pages = Math.ceil(this.products.length/this.perPage) ;
-                  this.pg.length = this.pages;
-                  this.$store.state.pages = this.pages;
-                  this.products = this.products.slice(0,9);
-                })
-                .catch()
-            for(var i=0;i< this.products.length;i++){
-               const obj = {text: this.products[i].productName, id: this.products[i]._id}
-               this.currentOptions.push(obj);
-            }
-        },
-        addToCart(product) {
-          Toast.fire({
-                    icon: 'success',
-                    title: 'Add to cart successfully'
-          });
-          this.$store.dispatch("addToCart", product);
-        },
-        getProByPage(numPage) {
-          this.$store.state.categoryId = '';
-          this.temp = [];
-          this.temp = this.$store.state.products;
-          this.temp = this.temp.slice((numPage-1)*this.perPage, (numPage-1)*this.perPage + this.perPage)
-          this.products = this.temp;
-          this.$store.state.categoryId = 1;
-        },
-        deleteUser(id){
-            Swal.fire({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    axios.delete('/api/user/'+id)
-                        .then( () => {
-                            this.users = this.users.filter(user => {
-                                return user.id != id ;
-                            })
-                        })
-                        .catch( () => {
-                            this.$router.push({ name: 'category' })
-                        })
-                    Swal.fire(
-                        'Deleted!',
-                        'Your file has been deleted.',
-                        'success'
-                    )
-                }
+    deleteUser(id) {
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!"
+      }).then(result => {
+        if (result.isConfirmed) {
+          axios
+            .delete("/api/user/" + id)
+            .then(() => {
+              this.users = this.users.filter(user => {
+                return user.id != id;
+              });
             })
-
-        },
-        changeOptions() {
-          this.currentOptions;
-        },
-        handleOnSelect(selectedValue) {
-          this.proName = selectedValue.text;
-          this.$store.state.categoryId = 0;
+            .catch(() => {
+              this.$router.push({ name: "category" });
+            });
+          Swal.fire("Deleted!", "Your file has been deleted.", "success");
         }
+      });
+    },
+    changeOptions() {
+      this.currentOptions;
+    },
+    handleOnSelect(selectedValue) {
+      this.proName = selectedValue.text;
+      this.$store.state.categoryId = 0;
     }
   }
-
 };
 </script>
 <style scoped>
