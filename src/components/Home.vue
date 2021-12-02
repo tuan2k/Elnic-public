@@ -2,19 +2,19 @@
   <div>
     <div class="col-md-9 col-md-push-3">
       <div class="tabs-block">
-        <div class="tabulation-menu-wrapper text-center">
-          <div class="tabulation-title simple-input">all</div>
-          <ul class="tabulation-toggle">
-            <li><a class="tab-menu active">all</a></li>
-            <li><a class="tab-menu">top 10</a></li>
-            <li><a class="tab-menu">gadgets</a></li>
-            <li><a class="tab-menu">laptops</a></li>
-            <li><a class="tab-menu">accessories</a></li>
-          </ul>
-        </div>
         <div class="empty-space col-xs-b30" />
         <div class="tab-entry visible">
           <div class="row nopadding">
+            <label>Filter Auto Complete</label>
+
+            <vue-infinite-autocomplete
+              :data-source="currentOptions"
+              :value="currentValue"
+              :fetch-size="10"
+              v-on:select="handleOnSelect"
+            >
+            </vue-infinite-autocomplete>
+
             <div
               class="col-sm-4"
               v-for="product in filtersearch"
@@ -1810,6 +1810,8 @@
 </template>
 <script type="text/javascript">
 import axios from "axios";
+import VueInfiniteAutocomplete from "vue-infinite-autocomplete";
+
 export default {
   created() {
     this.allProduct();
@@ -1836,18 +1838,46 @@ export default {
       total: 0
     };
   },
+  // methods: {
+  //   allProduct() {
+  //     axios
+  //       .get("https://elnic-api.herokuapp.com/api/product")
+  //       .then(({ data }) => {
+  //         this.products = data;
+  //         this.$store.state.products = data;
+  //         this.pages = Math.ceil(this.products.length / this.perPage);
+  //         this.pg.length = this.pages;
+  //         this.$store.state.pages = this.pages;
+  //       })
+  //       .catch();
+  //   },
+  //           currentValue: "",
+  //           currentOptions: [],
+  //           proName: '',
+  //         }
+  //   },
   methods: {
-    allProduct() {
-      axios
+    allProduct: async function() {
+      await axios
         .get("https://elnic-api.herokuapp.com/api/product")
         .then(({ data }) => {
           this.products = data;
+          this.size = this.products.length;
+          this.productsView = data;
           this.$store.state.products = data;
           this.pages = Math.ceil(this.products.length / this.perPage);
           this.pg.length = this.pages;
           this.$store.state.pages = this.pages;
+          this.products = this.products.slice(0, 9);
         })
         .catch();
+      for (var i = 0; i < this.products.length; i++) {
+        const obj = {
+          text: this.products[i].productName,
+          id: this.products[i]._id
+        };
+        this.currentOptions.push(obj);
+      }
     },
     addToCart(product) {
       Toast.fire({
@@ -1859,13 +1889,13 @@ export default {
     getProByPage(numPage) {
       this.$store.state.categoryId = "";
       this.temp = [];
-      for (let i = 0; i < this.$store.state.products.length; i++) {
-        if (this.perPage * (numPage - 1) <= i && i < this.perPage * numPage) {
-          this.temp.push(this.$store.state.products[i]);
-        }
-      }
-      this.products = [];
+      this.temp = this.$store.state.products;
+      this.temp = this.temp.slice(
+        (numPage - 1) * this.perPage,
+        (numPage - 1) * this.perPage + this.perPage
+      );
       this.products = this.temp;
+      this.$store.state.categoryId = 1;
     },
     deleteUser(id) {
       Swal.fire({
@@ -1891,6 +1921,13 @@ export default {
           Swal.fire("Deleted!", "Your file has been deleted.", "success");
         }
       });
+    },
+    changeOptions() {
+      this.currentOptions;
+    },
+    handleOnSelect(selectedValue) {
+      this.proName = selectedValue.text;
+      this.$store.state.categoryId = 0;
     }
   }
 };
