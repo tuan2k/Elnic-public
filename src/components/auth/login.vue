@@ -1,110 +1,104 @@
 <template>
-  <div class="auth-page sign-in">
     <div>
-      <div class="spinner-grow text-primary" role="status">
-        <span class="sr-only">Loading...</span>
-      </div>
-    </div>
-    <div class="connect-container align-content-stretch d-flex flex-wrap">
-      <div class="container-fluid flex justify-center items-center">
-        <div class="w-1/3">
-          <div
-            class="
-              bg-primary-100
-              w-10/12
-              py-8
-              px-8
-              border-2
-              rounded-xl
-              mx-2
-              my-2
-            "
-          >
-            <div class="logo-box"><a href="#" class="logo-text">Elnics</a></div>
-            <form>
-              <div class="form-group">
-                <input
-                  id="email"
-                  type="email"
-                  class="form-control"
-                  aria-describedby="emailHelp"
-                  placeholder="Enter email"
-                />
-              </div>
-              <div class="form-group">
-                <input
-                  id="password"
-                  type="password"
-                  class="form-control"
-                  placeholder="Password"
-                />
-              </div>
-              <button
-                type="submit"
-                class="btn btn-primary btn-block btn-submit"
-              >Sign In</button
-              >
-              <div class="auth-options">
-                <div class="custom-control custom-checkbox form-group">
-                  <input
-                    id="exampleCheck1"
-                    type="checkbox"
-                    class="custom-control-input"
-                  />
-                  <label
-                    class="custom-control-label"
-                    for="exampleCheck1"
-                  >Remember me</label
-                  >
+            <section class="vh-100">
+        <div class="container-fluid h-custom">
+          <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-md-9 col-lg-6 col-xl-5">
+              <img src="https://mdbootstrap.com/img/Photos/new-templates/bootstrap-login-form/draw2.png" class="img-fluid"
+                alt="Sample image">
+            </div>
+            <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+              <form @submit.prevent="login()">
+                <br /> <br /> <br /> <br /> <br />
+                <br /> <br /> <br /> <br /> <br />
+                <div class="form-outline mb-4">
+                  <label class="form-label" for="form3Example3">Email address</label>
+                  <input id="form3Example3" class="form-control form-control-lg"
+                    placeholder="Enter a valid email address" v-model="form.username" />
                 </div>
-                <a href="#" class="forgot-link">Forgot Password?</a>
-              </div>
-            </form>
+                <br /> <br />
+                <div class="form-outline mb-3">
+                  <label class="form-label" for="form3Example4">Password</label>
+                  <input type="password" id="form3Example4" class="form-control form-control-lg"
+                    placeholder="Enter password" v-model="form.password" />
+                </div>
+
+                <br />
+                <div class="d-flex justify-content-between align-items-center">
+                  <a href="#!" class="text-body">Forgot password?</a>
+                </div>
+
+                <div class="text-center text-lg-start mt-4 pt-2">
+                  <button type="submit" class="btn btn-primary btn-lg"
+                    style="padding-left: 2.5rem; padding-right: 2.5rem;">Login</button>
+                    <br /> <br />
+                  <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? 
+                    <router-link to="/register"
+                      class="link-danger">Register</router-link></p>
+                </div>
+
+              </form>
+            </div>
           </div>
         </div>
-      </div>
+      </section>
+    
     </div>
-  </div>
 </template>
 <script>
 import axios from 'axios';
 export default {
-  name: 'login'
-//   created() {
-//         if (User.loggedIn()) {
-//             this.$router.push({ name: 'home' })
-//         }
-//     },
-//     data(){
-//         return{
-//             form:{
-//                 username: null,
-//                 password: null
-//             },
-//             errors : {}
-//         }
-//     },
-//     methods: {
-//         login() {
-//             console.log(this.form.username + this.form.password)
-//             axios.post('https://elnic.herokuapp.com/api/auth/signin',this.form)
-//             .then(res => {
-//                 console.log(res)
-//                 User.responseAfterLogin(res)
-//                 Toast.fire({
-//                     icon: 'success',
-//                     title: 'Signed in successfully'
-//                 })
-//                 this.$router.push({ name: 'home'})
-//             })
-//             .catch(error =>  {this.errors = error.response ; console.log(error)})
-//             .catch(
-//                 Toast.fire({
-//                     icon: 'warning',
-//                     title: 'Invalid Email or Password'
-//                 })
-//             )
-//         }
-//     }
+  name: 'login',
+  created() {
+        if (User.loggedIn()) {
+            this.$router.push({ name: 'home' })
+        }
+    },
+    data(){
+        return{
+            form:{
+                username: null,
+                password: null
+            },
+            errors : {}
+        }
+    },
+    methods: {
+        login() {
+            console.log(this.form.username + this.form.password)
+            axios.post('https://elnic.herokuapp.com/api/auth/signin',this.form)
+            .then(res => {
+                console.log(res);
+                this.$store.state.username = res.data.username;
+                User.responseAfterLogin(res)
+                Toast.fire({
+                    icon: 'success',
+                    title: 'Signed in successfully'
+                })
+                this.$router.push({ name: 'home'})
+            })
+            .catch(error =>  {this.errors = error.response ; console.log(error)})
+            .catch(
+        
+            )
+        }
+    }
   }
 </script>
+<style scoped>
+.divider:after,
+.divider:before {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: #eee;
+}
+.h-custom {
+  height: calc(100% - 73px);
+}
+@media (max-width: 450px) {
+  .h-custom {
+    height: 100%;
+  }
+}
+</style>

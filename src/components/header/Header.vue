@@ -9,17 +9,15 @@
                             <div class="entry"><b>email:</b> <a href="mailto:elnic@business.com">elnic@business.com</a></div>
                         </div>
                         <div class="col-md-7 col-md-text-right">
+                            <span v-if="this.username === 0 ">
                             <div class="entry"><router-link to="/login" class="open-popup" data-rel="1"><b>login</b>
                             </router-link>&nbsp; or &nbsp;<router-link to="/register" class="open-popup" data-rel="2"><b>register</b></router-link></div>
-                            <div class="entry language">
-                                <div class="title"><b>en</b></div>
-                                <div class="language-toggle header-toggle-animation">
-                                    <a href="#">fr</a>
-                                    <a href="#">ru</a>
-                                    <a href="#">it</a>
-                                    <a href="#">sp</a>
-                                </div>
-                            </div>
+                            </span>
+                            <span v-else>
+                            <div class="entry"><p to="/login" class="open-popup" data-rel="1">
+                            Welcome <b>{{ this.username }}</b>
+                            </p></div>
+                            </span> 
                             <div class="entry hidden-xs hidden-sm"><a href="#"><img  src="../../../static/icons/heart-thin.svg" width="12px" height="12px" alt="heart" /></a></div>
                             <div class="entry hidden-xs hidden-sm cart">
                                 <router-link to="/cart">
@@ -58,8 +56,6 @@
                                                 </table>
                                             </div>
                                         </div>
-                                       
-                                        
                                     </div>
                                     <div class="empty-space col-xs-b40"></div>
                                     <div class="row">
@@ -370,7 +366,7 @@
                                                 </div>
                                             </div>
                                         </li>
-                                        <li><a href="contact1.html">contact</a></li>
+                                        <li><router-link to="/contact">contact</router-link></li>
                                     </ul>
                                     <div class="navigation-title">
                                         Navigation
@@ -549,12 +545,15 @@ export default {
       this.getCartItems();
       this.getQuantity();
       this.getProduct()
+      this.username =this.$store.state.username;
+      console.log(this.username);
   },
    data () {
       return {
         carts : [],
         quantity: [],
         products: [],
+        username: '',
         form : {
 
         },

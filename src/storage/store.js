@@ -10,6 +10,7 @@ export const store = new Vuex.Store({
         cartQuantity: [],
         products: [],
         total: 0,
+        username: 0,
         categoryId: 1,
         pagination: 0,
         pages: 0,
