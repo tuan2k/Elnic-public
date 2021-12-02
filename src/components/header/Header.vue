@@ -58,13 +58,9 @@
                     :key="cart._id"
                   >
                     <div class="cart-entry clearfix">
-                      <a class="cart-entry-thumbnail" href="#">
-                        <img
-                          id="heo_image"
-                          :src="cart.productThambnail"
-                          alt=""
-                        />
-                      </a>
+                      <a class="cart-entry-thumbnail" href="#"
+                        ><img id="heo_image" :src="cart.productThambnail" alt=""
+                      /></a>
                       <div class="cart-entry-description">
                         <table>
                           <tr>
@@ -119,8 +115,8 @@
                             ><img src="img/icon-4.png" alt=""
                           /></span>
                           <span class="text">proceed to checkout</span>
-                        </span> </router-link
-                      >z
+                        </span>
+                      </router-link>
                     </div>
                   </div>
                 </div>
@@ -137,9 +133,6 @@
       <div class="header-bottom">
         <div class="content-margins">
           <div class="row">
-            <div class="col-xs-3 col-sm-1">
-              <a id="logo" href=""><img src="img/logo-2.png" alt=""/></a>
-            </div>
             <div class="col-xs-9 col-sm-11 text-right">
               <div class="nav-wrapper">
                 <div class="nav-close-layer"></div>
@@ -149,30 +142,7 @@
                       <router-link to="/">Home</router-link>
                     </li>
                     <li>
-                      <a href="#">about us</a>
-                    </li>
-
-                    <li>
-                      <a href="blog3.html">blog</a>
-                      <div class="menu-toggle"></div>
-                      <ul>
-                        <li>
-                          <a href="blog3.html">Blog Landing Pages</a>
-                          <div class="menu-toggle"></div>
-                          <ul>
-                            <li><a href="blog3.html">Blog Landing 1</a></li>
-                          </ul>
-                        </li>
-                        <li>
-                          <a href="blogdetail1.html">Blog Detail Pages</a>
-                          <div class="menu-toggle"></div>
-                          <ul>
-                            <li>
-                              <a href="blogdetail1.html">Blog Detail 1</a>
-                            </li>
-                          </ul>
-                        </li>
-                      </ul>
+                      <router-link to="/aboutUs">about us</router-link>
                     </li>
 
                     <li><router-link to="/contact">contact</router-link></li>
@@ -181,49 +151,7 @@
               </div>
             </div>
           </div>
-        </div>
-        <div class="empty-space col-xs-b40"></div>
-        <div class="row">
-          <div class="col-xs-6 text-right">
-            <router-link class="button size-2 style-3" to="/checkout">
-              <span class="button-wrapper">
-                <span class="icon"><img src="img/icon-4.png" alt=""/></span>
-                <span class="text">proceed to checkout</span>
-              </span>
-            </router-link>
-          </div>
-        </div>
-      </div>
-    </header>
-  </div>
-
-  <!-- <div class="header-bottom">
-        <div class="content-margins">
-          <div class="row" style="margin: auto">
-            <div class="col-xs-3 col-sm-1">
-              <a id="logo" href="#"><img src="img/logo-2.png" alt=""/></a>
-            </div>
-            <div class="col-xs-9 col-sm-11 text-right">
-              <div class="nav-wrapper">
-                <div class="nav-close-layer"></div>
-                <nav>
-                  <ul>
-                    <li class="active">
-                      <router-link to="/">Home</router-link>
-                    </li>
-                    <li>
-                      <a href="" @click="onClickAboutUs">about us</a>
-                    </li>
-                    <li>
-                      <a href="">blog</a>
-                    </li>
-                    <li><a href="">contact</a></li>
-                  </ul>
-                </nav>
-              </div>
-            </div>
-          </div>
-          <div class="header-search-wrapper">
+          <!-- <div class="header-search-wrapper">
             <div class="header-search-content">
               <div class="container-fluid">
                 <div class="row">
@@ -247,12 +175,12 @@
               </div>
               <div class="button-close"></div>
             </div>
-          </div>
+          </div> -->
         </div>
-      </div> -->
-  <!--  -->
+      </div>
+    </header>
 
-  <!-- <div class="header-empty-space"></div>
+    <div class="header-empty-space"></div>
     <div class="slider-wrapper">
       <div class="swiper-button-prev visible-lg"></div>
       <div class="swiper-button-next visible-lg"></div>
@@ -433,8 +361,8 @@
         </div>
         <div class="swiper-pagination"></div>
       </div>
-    </div> -->
-  <!-- </div> -->
+    </div>
+  </div>
 </template>
 
 <script>
@@ -461,10 +389,15 @@ export default {
       form: {}
     };
   },
-  methods: {
-      getCartItems() {
-    this.carts = this.$store.state.cartItems;
+  computed: {
+    count() {
+      return this.$store.state.cartItemCount;
+    }
   },
+  methods: {
+    getCartItems() {
+      this.carts = this.$store.state.cartItems;
+    },
     getQuantity() {
       this.quantity = this.$store.state.cartQuantity;
     },
@@ -477,7 +410,7 @@ export default {
           }
         }
       }
-  },
+    }
   }
 
   

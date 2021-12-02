@@ -1814,8 +1814,87 @@ import VueInfiniteAutocomplete from "vue-infinite-autocomplete";
 
 export default {
   created() {
-        this.allProduct();
-        this.total = this.$store.state.total;
+    this.allProduct();
+    this.total = this.$store.state.total;
+  },
+  components: {
+    "vue-infinite-autocomplete": VueInfiniteAutocomplete
+  },
+  computed: {
+    filtersearch() {
+      if (
+        this.$store.state.categoryId !== 0 &&
+        this.$store.state.categoryId !== 1
+      ) {
+        let categoryId = this.$store.state.categoryId;
+        if (this.products.length < this.size) {
+          this.products = this.productsView;
+        }
+        this.$store.state.categoryId = 1;
+        return this.products.filter(product => {
+          return product.categoriesId.match(categoryId);
+        });
+      } else if (this.$store.state.categoryId === 1) {
+        return this.products;
+      } else if (this.$store.state.categoryId === 0) {
+        if (this.products.length < this.size) {
+          this.products = this.productsView;
+        }
+        this.$store.state.categoryId = 1;
+        return this.products.filter(product => {
+          return product.productName.match(this.proName);
+        });
+      }
+    }
+  },
+  data() {
+    return {
+      products: [],
+      productsView: [],
+      carts: [],
+      searchTerm: "",
+      pages: "",
+      pg: [],
+      size: 0,
+      perPage: 9,
+      currentPage: 1,
+      temp: [],
+      total: 0,
+      input: "",
+      currentValue: "",
+      currentOptions: [],
+      proName: ""
+    };
+  },
+  methods: {
+    allProduct: async function() {
+      await axios
+        .get("https://elnic-api.herokuapp.com/api/product")
+        .then(({ data }) => {
+          this.products = data;
+          this.size = this.products.length;
+          this.productsView = data;
+          this.$store.state.products = data;
+          this.pages = Math.ceil(this.products.length / this.perPage);
+          this.pg.length = this.pages;
+          this.$store.state.pages = this.pages;
+          this.products = this.products.slice(0, 9);
+        })
+        .catch();
+      for (var i = 0; i < this.products.length; i++) {
+        const obj = {
+          text: this.products[i].productName,
+          id: this.products[i]._id
+        };
+        this.currentOptions.push(obj);
+      }
+    },
+    addToCart(product) {
+      Toast.fire({
+        icon: "success",
+        title: "Add to cart successfully"
+      });
+      this.$store.dispatch("addToCart", product);
     },
     components: {
      "vue-infinite-autocomplete": VueInfiniteAutocomplete
@@ -1935,6 +2014,7 @@ export default {
           this.$store.state.categoryId = 0;
         }
     }
+  }
 
 };
 </script>
