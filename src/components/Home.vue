@@ -1817,29 +1817,57 @@ export default {
     this.allProduct();
     this.total = this.$store.state.total;
   },
+  components: {
+    "vue-infinite-autocomplete": VueInfiniteAutocomplete
+  },
   computed: {
     filtersearch() {
-      let categoryId = this.$store.state.categoryId;
-      return this.products.filter(product => {
-        return product.categoriesId.match(categoryId);
-      });
+      if (
+        this.$store.state.categoryId !== 0 &&
+        this.$store.state.categoryId !== 1
+      ) {
+        let categoryId = this.$store.state.categoryId;
+        if (this.products.length < this.size) {
+          this.products = this.productsView;
+        }
+        this.$store.state.categoryId = 1;
+        return this.products.filter(product => {
+          return product.categoriesId.match(categoryId);
+        });
+      } else if (this.$store.state.categoryId === 1) {
+        return this.products;
+      } else if (this.$store.state.categoryId === 0) {
+        if (this.products.length < this.size) {
+          this.products = this.productsView;
+        }
+        this.$store.state.categoryId = 1;
+        return this.products.filter(product => {
+          return product.productName.match(this.proName);
+        });
+      }
     }
   },
   data() {
     return {
       products: [],
+      productsView: [],
       carts: [],
       searchTerm: "",
       pages: "",
       pg: [],
-      perPage: 4,
+      size: 0,
+      perPage: 9,
       currentPage: 1,
       temp: [],
-      total: 0
+      total: 0,
+      input: "",
+      currentValue: "",
+      currentOptions: [],
+      proName: ""
     };
   },
   methods: {
-    async allProduct() {
+    allProduct: async function() {
       await axios
         .get("https://elnic-api.herokuapp.com/api/product")
         .then(({ data }) => {
@@ -1852,7 +1880,7 @@ export default {
           this.$store.state.pages = this.pages;
           this.products = this.products.slice(0, 9);
         })
-        .catch(error => console.log(error));
+        .catch();
       for (var i = 0; i < this.products.length; i++) {
         const obj = {
           text: this.products[i].productName,
