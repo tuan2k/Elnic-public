@@ -1,110 +1,113 @@
 <template>
-  <div class="auth-page sign-in">
-    <div>
-      <div class="spinner-grow text-primary" role="status">
-        <span class="sr-only">Loading...</span>
-      </div>
-    </div>
-    <div class="connect-container align-content-stretch d-flex flex-wrap">
-      <div class="container-fluid flex justify-center items-center">
-        <div class="w-1/3">
-          <div
-            class="
-              bg-primary-100
-              w-10/12
-              py-8
-              px-8
-              border-2
-              rounded-xl
-              mx-2
-              my-2
-            "
-          >
-            <div class="logo-box"><a href="#" class="logo-text">Elnics</a></div>
-            <form>
-              <div class="form-group">
-                <input
-                  id="email"
-                  type="email"
-                  class="form-control"
-                  aria-describedby="emailHelp"
-                  placeholder="Enter email"
-                />
-              </div>
-              <div class="form-group">
-                <input
-                  id="password"
-                  type="password"
-                  class="form-control"
-                  placeholder="Password"
-                />
-              </div>
-              <button
-                type="submit"
-                class="btn btn-primary btn-block btn-submit"
-              >Sign In</button
-              >
-              <div class="auth-options">
-                <div class="custom-control custom-checkbox form-group">
-                  <input
-                    id="exampleCheck1"
-                    type="checkbox"
-                    class="custom-control-input"
-                  />
-                  <label
-                    class="custom-control-label"
-                    for="exampleCheck1"
-                  >Remember me</label
-                  >
-                </div>
-                <a href="#" class="forgot-link">Forgot Password?</a>
-              </div>
-            </form>
+  <div class="popup-content" data-rel="1">
+    <div class="layer-close"></div>
+    <div class="popup-container size-1">
+      <div class="popup-align">
+        <h3 class="h3 text-center">Log in</h3>
+        <div class="empty-space col-xs-b30"></div>
+        <input
+          class="simple-input"
+          type="text"
+          value=""
+          placeholder="Your email"
+        />
+        <div class="empty-space col-xs-b10 col-sm-b20"></div>
+        <input
+          class="simple-input"
+          type="password"
+          value=""
+          placeholder="Enter password"
+        />
+        <div class="empty-space col-xs-b10 col-sm-b20"></div>
+        <div class="row">
+          <div class="col-sm-6 col-xs-b10 col-sm-b0">
+            <div class="empty-space col-sm-b5"></div>
+            <a class="simple-link">Forgot password?</a>
+            <div class="empty-space col-xs-b5"></div>
+            <a class="simple-link">register now</a>
+          </div>
+          <div class="col-sm-6 text-right">
+            <a class="button size-2 style-3" href="#">
+              <span class="button-wrapper">
+                <span class="icon"><img src="img/icon-4.png" alt=""/></span>
+                <span class="text">submit</span>
+              </span>
+            </a>
+          </div>
+        </div>
+        <div class="popup-or">
+          <span>or</span>
+        </div>
+        <div class="row m5">
+          <div class="col-sm-4 col-xs-b10 col-sm-b0">
+            <a class="button facebook-button size-2 style-4 block" href="#">
+              <span class="button-wrapper">
+                <span class="icon"><img src="img/icon-4.png" alt=""/></span>
+                <span class="text">facebook</span>
+              </span>
+            </a>
+          </div>
+          <div class="col-sm-4 col-xs-b10 col-sm-b0">
+            <a class="button twitter-button size-2 style-4 block" href="#">
+              <span class="button-wrapper">
+                <span class="icon"><img src="img/icon-4.png" alt=""/></span>
+                <span class="text">twitter</span>
+              </span>
+            </a>
+          </div>
+          <div class="col-sm-4">
+            <a class="button google-button size-2 style-4 block" href="#">
+              <span class="button-wrapper">
+                <span class="icon"><img src="img/icon-4.png" alt=""/></span>
+                <span class="text">google+</span>
+              </span>
+            </a>
           </div>
         </div>
       </div>
+      <div class="button-close"></div>
     </div>
   </div>
 </template>
 <script>
-import axios from 'axios';
+import axios from "axios";
 export default {
-  name: 'login'
-//   created() {
-//         if (User.loggedIn()) {
-//             this.$router.push({ name: 'home' })
-//         }
-//     },
-//     data(){
-//         return{
-//             form:{
-//                 username: null,
-//                 password: null
-//             },
-//             errors : {}
-//         }
-//     },
-//     methods: {
-//         login() {
-//             console.log(this.form.username + this.form.password)
-//             axios.post('https://elnic.herokuapp.com/api/auth/signin',this.form)
-//             .then(res => {
-//                 console.log(res)
-//                 User.responseAfterLogin(res)
-//                 Toast.fire({
-//                     icon: 'success',
-//                     title: 'Signed in successfully'
-//                 })
-//                 this.$router.push({ name: 'home'})
-//             })
-//             .catch(error =>  {this.errors = error.response ; console.log(error)})
-//             .catch(
-//                 Toast.fire({
-//                     icon: 'warning',
-//                     title: 'Invalid Email or Password'
-//                 })
-//             )
-//         }
-//     }
-  }
+  name: "Login"
+  //   created() {
+  //         if (User.loggedIn()) {
+  //             this.$router.push({ name: 'home' })
+  //         }
+  //     },
+  //     data(){
+  //         return{
+  //             form:{
+  //                 username: null,
+  //                 password: null
+  //             },
+  //             errors : {}
+  //         }
+  //     },
+  //     methods: {
+  //         login() {
+  //             console.log(this.form.username + this.form.password)
+  //             axios.post('https://elnic.herokuapp.com/api/auth/signin',this.form)
+  //             .then(res => {
+  //                 console.log(res)
+  //                 User.responseAfterLogin(res)
+  //                 Toast.fire({
+  //                     icon: 'success',
+  //                     title: 'Signed in successfully'
+  //                 })
+  //                 this.$router.push({ name: 'home'})
+  //             })
+  //             .catch(error =>  {this.errors = error.response ; console.log(error)})
+  //             .catch(
+  //                 Toast.fire({
+  //                     icon: 'warning',
+  //                     title: 'Invalid Email or Password'
+  //                 })
+  //             )
+  //         }
+  //     }
+};
 </script>
