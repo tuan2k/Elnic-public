@@ -15,25 +15,39 @@
               </div>
             </div>
             <div class="col-md-7 col-md-text-right">
-              <div class="entry">
-                <router-link to="/login" class="open-popup" data-rel="1">
-                  <b>login</b>
-                </router-link>
-                &nbsp; or &nbsp;
-                <router-link to="/register" class="open-popup" data-rel="2">
-                  <b>register</b>
-                </router-link>
+              <span v-if="this.username === 0">
+                <div class="entry">
+                  <router-link to="/login" class="open-popup" data-rel="1"
+                    ><b>login</b> </router-link
+                  >&nbsp; or &nbsp;<router-link
+                    to="/register"
+                    class="open-popup"
+                    data-rel="2"
+                    ><b>register</b></router-link
+                  >
+                </div>
+              </span>
+              <span v-else>
+                <div class="entry">
+                  <p to="/login" class="open-popup" data-rel="1">
+                    Welcome <b>{{ this.username }}</b>
+                  </p>
+                </div>
+              </span>
+              <div class="entry hidden-xs hidden-sm">
+                <a href="#"
+                  ><img
+                    src="../../../static/icons/heart-thin.svg"
+                    width="12px"
+                    height="12px"
+                    alt="heart"
+                /></a>
               </div>
               <div class="entry hidden-xs hidden-sm cart">
                 <router-link to="/cart">
                   <b class="hidden-xs">Your bag</b>
                   <span class="cart-icon">
-                    <img
-                      src="../../../static/icons/shopping-bag.svg"
-                      alt="shopping-bag"
-                      width="13px"
-                      height="13px"
-                    />
+                    <i class="fa fa-shopping-bag" aria-hidden="true"></i>
                     <span class="cart-label">{{ count }}</span>
                   </span>
                 </router-link>
@@ -85,7 +99,7 @@
                             <td>
                               <div
                                 class="cart-color"
-                                style="background: #eee"
+                                style="background: #eee;"
                               ></div>
                             </td>
                             <td>
@@ -105,22 +119,85 @@
                             ><img src="img/icon-4.png" alt=""
                           /></span>
                           <span class="text">proceed to checkout</span>
-                        </span>
-                      </router-link>
+                        </span> </router-link
+                      >z
                     </div>
                   </div>
                 </div>
               </div>
-              <!-- <div class="hamburger-icon">
+              <div class="hamburger-icon">
                 <span></span>
                 <span></span>
                 <span></span>
-              </div> -->
+              </div>
             </div>
           </div>
         </div>
       </div>
       <div class="header-bottom">
+        <div class="content-margins">
+          <div class="row">
+            <div class="col-xs-3 col-sm-1">
+              <a id="logo" href=""><img src="img/logo-2.png" alt=""/></a>
+            </div>
+            <div class="col-xs-9 col-sm-11 text-right">
+              <div class="nav-wrapper">
+                <div class="nav-close-layer"></div>
+                <nav>
+                  <ul>
+                    <li class="active">
+                      <router-link to="/">Home</router-link>
+                    </li>
+                    <li>
+                      <a href="#" @click="onClickAboutUs">about us</a>
+                    </li>
+
+                    <li>
+                      <a href="blog3.html">blog</a>
+                      <div class="menu-toggle"></div>
+                      <ul>
+                        <li>
+                          <a href="blog3.html">Blog Landing Pages</a>
+                          <div class="menu-toggle"></div>
+                          <ul>
+                            <li><a href="blog3.html">Blog Landing 1</a></li>
+                          </ul>
+                        </li>
+                        <li>
+                          <a href="blogdetail1.html">Blog Detail Pages</a>
+                          <div class="menu-toggle"></div>
+                          <ul>
+                            <li>
+                              <a href="blogdetail1.html">Blog Detail 1</a>
+                            </li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </li>
+
+                    <li><router-link to="/contact">contact</router-link></li>
+                  </ul>
+                </nav>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="empty-space col-xs-b40"></div>
+        <div class="row">
+          <div class="col-xs-6 text-right">
+            <router-link class="button size-2 style-3" to="/checkout">
+              <span class="button-wrapper">
+                <span class="icon"><img src="img/icon-4.png" alt=""/></span>
+                <span class="text">proceed to checkout</span>
+              </span>
+            </router-link>
+          </div>
+        </div>
+      </div>
+    </header>
+  </div>
+
+  <!-- <div class="header-bottom">
         <div class="content-margins">
           <div class="row" style="margin: auto">
             <div class="col-xs-3 col-sm-1">
@@ -172,10 +249,10 @@
             </div>
           </div>
         </div>
-      </div>
-    </header>
+      </div> -->
+  <!--  -->
 
-    <div class="header-empty-space"></div>
+  <!-- <div class="header-empty-space"></div>
     <div class="slider-wrapper">
       <div class="swiper-button-prev visible-lg"></div>
       <div class="swiper-button-next visible-lg"></div>
@@ -356,8 +433,8 @@
         </div>
         <div class="swiper-pagination"></div>
       </div>
-    </div>
-  </div>
+    </div> -->
+  <!-- </div> -->
 </template>
 
 <script>
@@ -367,71 +444,43 @@ export default {
   name: "ElnicHeader",
   components: { Login, Register },
   created() {
-<<<<<<< HEAD
     this.getCartItems();
     this.getQuantity();
     this.getProduct();
+    this.username = this.$store.state.username;
+    console.log(this.username);
   },
   data() {
     return {
       carts: [],
       quantity: [],
       products: [],
-      form: {},
-      showLogin: false,
-      showRegister: false
+      username: "",
+      form: {}
     };
   },
-  computed: {
-    count() {
-      return this.$store.state.cartItemCount;
-    }
+  onClickRegister() {
+    this.showRegister = true;
   },
-  methods: {
-    onClickLogin() {
-      this.showLogin = true;
-=======
-      this.getCartItems();
-      this.getQuantity();
-      this.getProduct()
-      this.username =this.$store.state.username;
-      console.log(this.username);
+
+  getCartItems() {
+    this.carts = this.$store.state.cartItems;
   },
-   data () {
-      return {
-        carts : [],
-        quantity: [],
-        products: [],
-        username: '',
-        form : {
-
-        },
-        }
->>>>>>> 5c6e87b632191b75bf99c0f671492a314d311ce0
-    },
-    onClickRegister() {
-      this.showRegister = true;
-    },
-
-    getCartItems() {
-      this.carts = this.$store.state.cartItems;
-    },
-    getQuantity() {
-      this.quantity = this.$store.state.cartQuantity;
-    },
-    getProduct() {
-      for (let i = 0; i < this.carts.length; i++) {
-        this.products.push(this.carts[i]);
-        for (let j = 0; j < this.quantity.length; j++) {
-          if (i === j) {
-            this.products[i].cartNumber = this.quantity[j];
-          }
+  getQuantity() {
+    this.quantity = this.$store.state.cartQuantity;
+  },
+  getProduct() {
+    for (let i = 0; i < this.carts.length; i++) {
+      this.products.push(this.carts[i]);
+      for (let j = 0; j < this.quantity.length; j++) {
+        if (i === j) {
+          this.products[i].cartNumber = this.quantity[j];
         }
       }
-    },
-    onClickAboutUs() {
-      this.$router.push({ name: "about" });
     }
+  },
+  onClickAboutUs() {
+    this.$router.push({ name: "about" });
   }
 };
 </script>
