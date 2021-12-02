@@ -6,9 +6,9 @@
           <div class="col-sm-6 col-sm-offset-3">
             <div class="cell-view simple-banner-height text-center">
               <div class="empty-space col-xs-b35 col-sm-b70"/>
-              <h1 class="h1 light">we are exzo</h1>
+              <h1 class="h1 light">we are elnic</h1>
               <div class="title-underline center"><span/></div>
-              <div class="simple-article light transparent size-4">In feugiat molestie tortor a malesuada. Etiam a venenatis ipsum. Proin pharetra elit at feugiat commodo vel placerat tincidunt sapien nec</div>
+              <div class="simple-article light transparent size-4">where your business begin to Infinitives, and Beyond!</div>
               <div class="empty-space col-xs-b35 col-sm-b70"/>
             </div>
           </div>
@@ -23,7 +23,7 @@
       <div class="row">
         <div class="col-sm-5">
           <div class="simple-article size-3 grey uppercase col-xs-b5">about us</div>
-          <div class="h2">we love music</div>
+          <div class="h2">we love elnic</div>
           <div class="title-underline left"><span/></div>
           <div class="simple-article size-4 grey">Praesent nec finibus massa. Phasellus id auctor lacus, at iaculis lorem. Donec quis arcu elit. In vehicula purus sem</div>
         </div>

@@ -1519,9 +1519,9 @@ export default {
     }
 
 }
- </script>
- <style scoped>
- .paginationheo {
+</script>
+<style scoped>
+.paginationheo {
   display: inline-block;
   margin-left: 300px;
 }
