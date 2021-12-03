@@ -76,7 +76,10 @@
                   <div class="simple-article size-3 col-xs-b5">ITEM NO.: <span class="grey">127-#5238</span></div>
                 </div>
                 <div class="col-sm-6 col-sm-text-right">
-                  <div class="simple-article size-3 col-xs-b20">AVAILABLE.: <span class="grey">YES</span></div>
+                  <div class="simple-article size-3 col-xs-b20">AVAILABLE.: 
+                    <span class="grey" v-if="form.productQty > 0">YES</span>
+                    <span class="grey" v-else>NO</span>
+                  </div>
                 </div>
               </div>
               <div class="simple-article size-3 col-xs-b30">Vivamus in tempor eros. Phasellus rhoncus in nunc sit amet mattis. Integer in ipsum vestibulum, molestie arcu ac, efficitur tellus. Phasellus id vulputate erat.</div>

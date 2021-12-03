@@ -16,7 +16,8 @@ export const store = new Vuex.Store({
     pagination: 0,
     pages: 0,
     perPage: 4,
-    currentPage: 1
+    currentPage: 1,
+    payment: 0,
   },
   getters: {
     doneTodos: state => {

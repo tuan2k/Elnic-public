@@ -407,6 +407,7 @@ import VueInfiniteAutocomplete from "vue-infinite-autocomplete";
 export default {
   created() {
     this.allProduct();
+    this.getAllCategory();
     this.total = this.$store.state.total;
   },
 
@@ -445,6 +446,7 @@ export default {
       products: [],
       productsView: [],
       carts: [],
+      categories: [],
       searchTerm: "",
       pages: "",
       pg: [],
@@ -541,11 +543,21 @@ export default {
       this.proName = selectedValue.text;
       this.$store.state.categoryId = 0;
     },
+    getAllCategory() {
+        axios.get("https://elnic-api.herokuapp.com/api/categories")
+        .then (res => {
+            this.categories = res.data ;
+            this.$store.state.categories = res.data;
+            console.log(res);
+        })
+        .catch( err => console.log(err))
+    },
     getNameCategory(categoryId) {
-      const category = this.$store.state.categories.filter(
-        obj => obj._id === categoryId
+      const category = this.categories.filter(
+        obj => {return obj._id === categoryId}
       );
-      return category[0].categoryName;
+
+      return category.categoryName;
     }
   }
 };
