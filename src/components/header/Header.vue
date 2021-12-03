@@ -142,7 +142,7 @@
                       <router-link to="/">Home</router-link>
                     </li>
                     <li>
-                      <router-link to="/aboutUs">about us</router-link>
+                      <router-link to="/about">about us</router-link>
                     </li>
 
                     <li><router-link to="/contact">contact</router-link></li>
@@ -376,9 +376,9 @@ export default {
     console.log(this.username);
   },
   computed: {
-     count(){
-       return this.$store.state.cartItemCount;
-     }
+    count() {
+      return this.$store.state.cartItemCount;
+    }
   },
   data() {
     return {
@@ -412,8 +412,6 @@ export default {
       }
     }
   }
-
-  
 };
 </script>
 <style scoped>
