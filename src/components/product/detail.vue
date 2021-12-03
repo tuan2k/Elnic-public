@@ -13,7 +13,7 @@
         <div class="col-md-9 col-md-push-3">
           <div class="row">
             <div class="col-sm-6 col-xs-b30 col-sm-b0">
-              <img :src="this.form.productThambnail"  height="700px" weight="700px"/>
+              <img :src="this.form.productThambnail"  height="400px" weight="400px"/>
               <!-- <div class="main-product-slider-wrapper swipers-couple-wrapper">
                 <div class="swiper-container swiper-control-top">
                   <div class="swiper-button-prev hidden"/>
