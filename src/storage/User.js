@@ -3,15 +3,14 @@ import AppStorage from './AppStorage'
 
 
 class User{
-
     responseAfterLogin(res){
         const access_token = res.data.accessToken
-        const username = res.data.name
+        const username = res.data.username
+        const id = res.data.id
         if (Token.isValid(access_token)) {
-            AppStorage.store(access_token,username)
+            AppStorage.store(access_token,username,id)
         }
     }
-
 
     hasToken(){
         const storeToken = localStorage.getItem('token');

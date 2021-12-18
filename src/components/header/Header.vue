@@ -15,7 +15,7 @@
               </div>
             </div>
             <div class="col-md-7 col-md-text-right">
-              <span v-if="this.username === 0">
+              <span v-if="this.fullname === '' || this.fullname === undefined">
                 <div class="entry">
                   <router-link to="/login" class="open-popup" data-rel="1"
                     ><b>login</b> </router-link
@@ -30,7 +30,7 @@
               <span v-else>
                 <div class="entry">
                   <p to="/login" class="open-popup" data-rel="1">
-                    Welcome <b>{{ this.username }}</b>
+                    Welcome <b>{{ this.fullname }}</b>
                   </p>
                 </div>
               </span>
@@ -373,7 +373,8 @@ export default {
     this.getQuantity();
     this.getProduct();
     this.username = this.$store.state.username;
-    console.log(this.username);
+    this.fullname = localStorage.getItem("user");
+    console.log(this.fullname);
   },
   computed: {
     count() {
@@ -386,6 +387,7 @@ export default {
       quantity: [],
       products: [],
       username: "",
+      fullname: '',
       form: {}
     };
   },

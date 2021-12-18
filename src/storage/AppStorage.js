@@ -6,9 +6,14 @@ class AppStorage {
         localStorage.setItem('user',user);
     }
 
-    store(token,user){
+    storeId(id){
+        localStorage.setItem('id',id);
+    }
+
+    store(token,user,id){
         this.storeToken(token);
         this.storeUser(user);
+        this.storeId(id);
     }
 
     clear(){

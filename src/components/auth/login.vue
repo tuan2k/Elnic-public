@@ -102,11 +102,11 @@ export default {
           console.log(res);
           this.$store.state.username = res.data.username;
           User.responseAfterLogin(res);
+          this.$router.push({ name: "home" });
           Toast.fire({
             icon: "success",
             title: "Signed in successfully"
           });
-          this.$router.push({ name: "home" });
         })
         .catch(error => {
           this.errors = error.response;
