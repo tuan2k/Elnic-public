@@ -203,12 +203,15 @@ export default {
          }
       },
       Submit() {
+        console.log(this.form);
          axios.post('https://elnic-api.herokuapp.com/api/orders',this.form)
           .then( (response) => {
             console.log(response.data._id);
             this.$router.push({ name: 'history',params:{id: response.data.userId}})
           })
-          .catch()
+          .catch( (err) => {
+            console.log(err);
+          })
       }
   }
 };

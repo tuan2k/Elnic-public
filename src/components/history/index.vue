@@ -35,8 +35,8 @@
             <td><h6 class="h6">{{ order.fullName }}</h6></td>
             <td><h6 class="h6">{{ order.phone }}</h6></td>
             <td>
-                 <span v-if="order.status === true" class="h6">Đã thanh toán</span>  
-                 <span class="h6" v-else>Chưa thanh toán</span>
+                 <span v-if="order.status !== true" class="h6">Chưa thanh toán</span>  
+                 <span class="h6" v-else>Đã thanh toán</span>
             </td>
             <td>
               <div ref="paypal" v-if="order.status !== true"></div>
@@ -79,13 +79,18 @@ export default {
         .then( ({data}) => {
                     this.order = data[0];
                     console.log(this.order);
+                    this.tests.push(1);
         })
         .catch()
       this.total = this.$store.state.total;
   },
   data () {
       return {
-          order : [],
+          order : {
+            fullName: '',
+            phone: '',
+            status: false
+          },
           form : {
               status: '',
               transactionId: ''
@@ -95,7 +100,8 @@ export default {
           paidFor: false,
           product: {
               description: "leg lamp from that one movie",
-          }
+          },
+          tests: [],
       }
   },
   mounted: function() {
@@ -137,9 +143,12 @@ export default {
             axios.put('https://elnic-api.herokuapp.com/api/orders/'+this.order._id, this.form)
             .then( ({data}) => {
                         this.order = data[0];
+                        this.order.status = true;
                         console.log(this.order);
             })
-            .catch()
+            .catch( (err) => {
+              console.log(err.response)
+            })
           },
           onError: err => {
             console.log(err);
