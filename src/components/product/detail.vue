@@ -141,14 +141,13 @@
             <div class="tab-entry visible">
               
             </div>
-
               <div class="tab-entry">
               <div class="testimonial-entry">
                 <div class="row col-xs-b20">
                   <div class="col-xs-8" v-for="rv in reviews" :key="rv._id">
                     <img class="preview" src="/../../img/testimonial-1.jpg" alt="" />
                     <div class="heading-description">
-                      <div class="h6 col-xs-b5">{{ rv._id }}</div>
+                      <div class="h6 col-xs-b5">{{ rv.username }}</div>
                       <div class="rate-wrapper align-inline">
                           <star-rating :rating="rv.rating" :read-only	="true"></star-rating>
                       </div>
@@ -197,6 +196,7 @@ export default {
     created() {
       this.getCartItems();
       this.userIdLogin = localStorage.getItem("id");
+      this.username = localStorage.getItem("user");
       let id =  this.$route.params.id;
             axios.get('https://elnic-api.herokuapp.com/api/product/'+id)
                 .then( ({data}) => {
@@ -213,6 +213,7 @@ export default {
             comment: '',
             rating: 5,
             reviews: [],
+            username: '',
         }
     },
     methods: {
@@ -269,7 +270,7 @@ export default {
         },
         saveReview(){
            let userId = localStorage.getItem("id");
-           let obj = {"userId" : userId, "rating":this.rating, "sumarry": this.comment, "productId":this.form._id};
+           let obj = {"userId" : userId,"username": this.username, "rating":this.rating, "sumarry": this.comment, "productId":this.form._id};
           console.log(obj)
           axios.post("https://elnic-api.herokuapp.com/api/review",obj)
           .then(res => {

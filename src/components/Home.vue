@@ -25,7 +25,10 @@
                     <a href="">{{ getNameCategory(product.categoriesId) }}</a>
                   </div>
                   <div class="h6 animate-to-green">
-                    <a href="">{{ product.productName }}</a>
+                    <router-link :to="{
+                          name: 'product-detail',
+                          params: { id: product._id }
+                        }">{{ product.productName }}</router-link>
                   </div>
                 </div>
                 <div class="preview">

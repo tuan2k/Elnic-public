@@ -158,6 +158,7 @@ export default {
       this.getQuantity();
       this.getTotal();
       this.getProduct()
+      this.form.amount =  this.$store.state.total;
   },
   data () {
       return {
@@ -169,6 +170,7 @@ export default {
               fullName: '',
               address: '',
               phone: '',
+              amount: '',
               productList: []
           
         },
