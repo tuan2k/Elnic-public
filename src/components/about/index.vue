@@ -186,11 +186,9 @@
         </div>
       </div>
     </div>
-
     <div class="empty-space col-xs-b35 col-md-b70" />
     <div class="empty-space col-xs-b35 col-md-b70" />
-
-    <div class="container">
+    <!-- <div class="container">
       <div class="text-center">
         <div class="simple-article size-3 grey uppercase col-xs-b5">
           our team
@@ -198,11 +196,9 @@
         <div class="h2">meet with professionals</div>
         <div class="title-underline center"><span /></div>
       </div>
-    </div>
-
+    </div> -->
     <div class="empty-space col-xs-b35 col-md-b70" />
-
-    <div class="container">
+    <!-- <div class="container">
       <div class="slider-wrapper our-team-slider">
         <div class="swiper-button-prev hidden-xs hidden-sm" />
         <div class="swiper-button-next hidden-xs hidden-sm" />
@@ -459,7 +455,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 

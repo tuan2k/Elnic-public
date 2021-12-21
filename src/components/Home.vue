@@ -1,19 +1,18 @@
 <template>
   <div>
+    <Slider />
     <div class="col-md-9 col-md-push-3">
       <div class="tabs-block">
-        <div class="empty-space col-xs-b30" />
+        <div class="empty-space col-xs-b10" />
         <div class="tab-entry visible">
           <div class="row nopadding">
             <label>Filter Auto Complete</label>
-            <vue-infinite-autocomplete
+            <VueInfiniteAutocomplete
               :data-source="currentOptions"
               :value="currentValue"
               :fetch-size="10"
               v-on:select="handleOnSelect"
-            >
-            </vue-infinite-autocomplete>
-
+            ></VueInfiniteAutocomplete>
             <div
               class="col-sm-4"
               v-for="product in filtersearch"
@@ -45,7 +44,9 @@
                       >
                         <span class="button-wrapper">
                           <span class="icon"
-                            ><img src="/static/img/icon-1.png" alt=""
+                            ><img
+                              src="../../static/images/elnic/icon-1.png"
+                              alt=""
                           /></span>
                           <span class="text">Learn More</span>
                         </span>
@@ -56,7 +57,9 @@
                       >
                         <span class="button-wrapper">
                           <span class="icon"
-                            ><img src="/static/img/icon-3.png" alt=""
+                            ><img
+                              src="../../static/images/elnic/icon-3.png"
+                              alt=""
                           /></span>
                           <span class="text">Add To Cart</span>
                         </span>
@@ -166,7 +169,9 @@
                           }"
                         >
                           <span class="icon"
-                            ><img src="/static/img/icon-1.png" alt=""
+                            ><img
+                              src="../../static/images/elnic/icon-1.png"
+                              alt=""
                           /></span>
                           <span class="text">Learn More</span>
                         </router-link>
@@ -177,7 +182,9 @@
                       >
                         <span class="button-wrapper">
                           <span class="icon"
-                            ><img src="/static/img/icon-3.png" alt=""
+                            ><img
+                              src="../../static/images/elnic/icon-3.png"
+                              alt=""
                           /></span>
                           <span class="text">Add To Cart</span>
                         </span>
@@ -244,7 +251,9 @@
                       >
                         <span class="button-wrapper">
                           <span class="icon"
-                            ><img src="/static/img/icon-1.png" alt=""
+                            ><img
+                              src="../../static/images/elnic/icon-1.png"
+                              alt=""
                           /></span>
                           <span class="text">Learn More</span>
                         </span>
@@ -255,7 +264,9 @@
                       >
                         <span class="button-wrapper">
                           <span class="icon"
-                            ><img src="/static/img/icon-3.png" alt=""
+                            ><img
+                              src="../../static/images/elnic/icon-3.png"
+                              alt=""
                           /></span>
                           <span class="text">Add To Cart</span>
                         </span>
@@ -318,7 +329,9 @@
                       >
                         <span class="button-wrapper">
                           <span class="icon"
-                            ><img src="/static/img/icon-1.png" alt=""
+                            ><img
+                              src="../../static/images/elnic/icon-1.png"
+                              alt=""
                           /></span>
                           <span class="text">Learn More</span>
                         </span>
@@ -329,7 +342,9 @@
                       >
                         <span class="button-wrapper">
                           <span class="icon"
-                            ><img src="/static/img/icon-3.png" alt=""
+                            ><img
+                              src="../../static/images/elnic/icon-3.png"
+                              alt=""
                           /></span>
                           <span class="text">Add To Cart</span>
                         </span>
@@ -397,7 +412,9 @@
                       >
                         <span class="button-wrapper">
                           <span class="icon"
-                            ><img src="/static/img/icon-1.png" alt=""
+                            ><img
+                              src="../../static/images/elnic/icon-1.png"
+                              alt=""
                           /></span>
                           <span class="text">Learn More</span>
                         </span>
@@ -408,7 +425,9 @@
                       >
                         <span class="button-wrapper">
                           <span class="icon"
-                            ><img src="/static/img/icon-3.png" alt=""
+                            ><img
+                              src="../../static/images/elnic/icon-3.png"
+                              alt=""
                           /></span>
                           <span class="text">Add To Cart</span>
                         </span>
@@ -450,19 +469,20 @@
 <script type="text/javascript">
 import axios from "axios";
 import VueInfiniteAutocomplete from "vue-infinite-autocomplete";
-
+import Slider from "@/components/header/slider.vue";
 export default {
   created() {
-    if (!User.loggedIn()) {
-      this.$router.push({ name: "login" });
-    }
+    // if (!User.loggedIn()) {
+    //   this.$router.push({ name: "login" });
+    // }
     this.allProduct();
     this.getAllCategory();
     this.total = this.$store.state.total;
   },
 
   components: {
-    "vue-infinite-autocomplete": VueInfiniteAutocomplete
+    VueInfiniteAutocomplete,
+    Slider
   },
   computed: {
     filtersearch() {
@@ -533,7 +553,17 @@ export default {
           this.getFeature = this.productsView.slice(11, 14);
           this.getTopRate = this.productsView.slice(17, 20);
         })
-        .catch();
+        .catch(err =>
+          this.$swal({
+            title: "Something's wrong about product. Please contact admin",
+            icon: "error",
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 2500,
+            timerProgressBar: true
+          })
+        );
       for (var i = 0; i < this.products.length; i++) {
         const obj = {
           text: this.products[i].productName,
