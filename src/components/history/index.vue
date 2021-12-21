@@ -8,9 +8,11 @@
       </div>
       <div class="empty-space col-xs-b15 col-sm-b50 col-md-b100" />
       <div class="text-center">
-        <div class="simple-article size-3 grey uppercase col-xs-b5">shopping cart</div>
+        <div class="simple-article size-3 grey uppercase col-xs-b5">
+          shopping cart
+        </div>
         <div class="h2">check your Orders</div>
-        <div class="title-underline center"><span/></div>
+        <div class="title-underline center"><span /></div>
       </div>
     </div>
 
@@ -38,8 +40,8 @@
               <h6 class="h6">{{ order.fullName }}</h6>
             </td>
             <td>
-                 <span v-if="check !== true" class="h6">Chưa thanh toán</span>  
-                 <span class="h6" v-else>Đã thanh toán</span>
+              <span v-if="check !== true" class="h6">Chưa thanh toán</span>
+              <span class="h6" v-else>Đã thanh toán</span>
             </td>
             <td>
               <div ref="paypal" v-if="check !== true"></div>
@@ -91,26 +93,26 @@ export default {
       .catch();
     this.total = this.$store.state.total;
   },
-  data () {
-      return {
-          order : {
-            fullName: '',
-            phone: '',
-            status: false
-          },
-          form : {
-              status: '',
-              transactionId: ''
-          },
-          total: '',
-          loaded: false,
-          paidFor: false,
-          check: false,
-          product: {
-              description: "leg lamp from that one movie",
-          },
-          tests: [],
-      }
+  data() {
+    return {
+      order: {
+        fullName: "",
+        phone: "",
+        status: false
+      },
+      form: {
+        status: "",
+        transactionId: ""
+      },
+      total: "",
+      loaded: false,
+      paidFor: false,
+      check: false,
+      product: {
+        description: "leg lamp from that one movie"
+      },
+      tests: []
+    };
   },
   mounted: function() {
     const script = document.createElement("script");
@@ -143,12 +145,17 @@ export default {
             this.paidFor = true;
             console.log(orders);
             this.check = true;
-            this.$store.state.cartItemCount=0;
+            this.$store.state.cartItemCount = 0;
             this.$store.state.cartItems = [];
             this.$store.state.cartQuantity = [];
-            Toast.fire({
-                    icon: 'success',
-                    title: 'Payment successfully'
+            this.$swal({
+              title: "Payment successfully",
+              icon: "error",
+              toast: true,
+              position: "top-end",
+              showConfirmButton: false,
+              timer: 2500,
+              timerProgressBar: true
             });
             this.form.status = true;
             this.form.transactionId = orders.id;

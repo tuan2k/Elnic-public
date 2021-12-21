@@ -17,9 +17,7 @@
             <div class="col-md-7 col-md-text-right">
               <span
                 v-if="
-                  this.fullname === '' ||
-                    this.fullname === undefined ||
-                    this.fullname === null
+                  fullname === '' || fullname === undefined || fullname === null
                 "
               >
                 <div class="entry">
@@ -35,7 +33,7 @@
               <span v-else>
                 <div class="entry">
                   <p class="open-popup" data-rel="1">
-                    Welcome <b>{{ this.fullname }}</b>
+                    Welcome <b>{{ fullname }}</b>
                   </p>
                 </div>
               </span>
@@ -151,7 +149,20 @@
                       <router-link to="/about">about us</router-link>
                     </li>
                     <li><router-link to="/contact">contact</router-link></li>
-                    <li><router-link :to="{ name: 'history',params:{id: idUser}}"><span v-if="fullname !== '' && fullname !== null && fullname!== undefined">My Orders</span></router-link></li>
+                    <li>
+                      <router-link
+                        :to="{ name: 'history', params: { id: idUser } }"
+                      >
+                        <span
+                          v-if="
+                            fullname !== '' &&
+                              fullname !== null &&
+                              fullname !== undefined
+                          "
+                          >My Orders
+                        </span>
+                      </router-link>
+                    </li>
                   </ul>
                 </nav>
               </div>
@@ -162,14 +173,14 @@
     </header>
 
     <div class="header-empty-space"></div>
-    <div class="slider-wrapper">
+    <div class="slider-wrapper" v-if="checkHome()">
       <div class="swiper-button-prev visible-lg"></div>
       <div class="swiper-button-next visible-lg"></div>
       <div class="swiper-container" data-parallax="1" data-auto-height="1">
         <div class="swiper-wrapper">
           <div class="swiper-slide" v-for="sl in sliders" :key="sl._id">
             <div class="container">
-              <div class="row">
+              <div class="row" style="margin-left: 10px;margin-right: 20px;">
                 <div class="col-sm-6">
                   <div class="cell-view page-height">
                     <div class="col-xs-b40 col-sm-b80"></div>
@@ -180,14 +191,12 @@
                       <div class="col-xs-b5"></div>
                     </div>
                     <div data-swiper-parallax-x="-500">
-                      <h1 class="h1">smartphone x transform</h1>
+                      <h1 class="h1">{{ sl.title }}</h1>
                       <div class="title-underline left"><span></span></div>
                     </div>
                     <div data-swiper-parallax-x="-400">
                       <div class="simple-article size-4 grey">
-                        In feugiat molestie tortor a malesuada. Etiam a
-                        venenatis ipsum. Proin pharetra elit at feugiat commodo
-                        vel placerat tincidunt sapien nec
+                        {{ sl.description }}
                       </div>
                       <div class="col-xs-b30"></div>
                     </div>
@@ -195,16 +204,21 @@
                       <div class="buttons-wrapper">
                         <a class="button size-2 style-2" href="#">
                           <span class="button-wrapper">
-                            <span class="icon"
-                              ><img :src="sl.imgUrl" alt=""
-                            /></span>
+                            <span class="icon">
+                              <img
+                                src="../../../static/images/elnic/icon-1.png"
+                                alt=""
+                              />
+                            </span>
                             <span class="text">Learn More</span>
                           </span>
                         </a>
                         <a class="button size-2 style-3" href="#">
                           <span class="button-wrapper">
                             <span class="icon"
-                              ><img :src="sl.imgUrl" alt=""
+                              ><img
+                                src="../../../static/images/elnic/icon-3.png"
+                                alt=""
                             /></span>
                             <span class="text">Add To Cart</span>
                           </span>
@@ -218,10 +232,8 @@
               <div class="slider-product-preview">
                 <div class="product-preview-shortcode">
                   <div class="preview">
-                    <div
-                      class="entry full-size swiper-lazy active"
-                    >
-                    <img :src="sl.imgUrl" style="width:300px;height:300px;"/>
+                    <div class="entry full-size swiper-lazy active">
+                      <img :src="sl.imgUrl" style="width:300px;height:300px;" />
                     </div>
                   </div>
                   <div
@@ -252,18 +264,19 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from "axios";
 export default {
   name: "ElnicHeader",
   created() {
     this.getCartItems();
     this.getQuantity();
     this.getProduct();
-    this.getSilder()
+    // this.$store.dispatch("getSliders");
+    this.getSilder();
     this.username = this.$store.state.username;
     this.fullname = localStorage.getItem("user");
     this.idUser = localStorage.getItem("id");
-    console.log(this.fullname);
+    // console.log(this.fullname);
   },
   computed: {
     count() {
@@ -276,9 +289,9 @@ export default {
       quantity: [],
       products: [],
       username: "",
-      fullname: '',
+      fullname: "",
       form: {},
-      sliders: [],
+      sliders: []
     };
   },
   computed: {
@@ -303,13 +316,19 @@ export default {
         }
       }
     },
-    getSilder(){
-      axios.get("https://elnic-api.herokuapp.com/api/sliders")
-        .then (res => {
-            this.sliders = res.data ;
-            console.log(this.sliders);
+    getSilder() {
+      axios
+        .get("https://elnic-api.herokuapp.com/api/sliders")
+        .then(res => {
+          this.sliders = res.data;
+          console.log(this.sliders);
         })
-        .catch( err => console.log(err))
+        .catch(err => console.log(err));
+    },
+    checkHome() {
+      // console.log(this.$route.name);
+      if (this.$route.name === "home") return true;
+      else return false;
     }
   }
 };

@@ -1,6 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
-
+import axios from "axios";
 Vue.use(Vuex);
 
 export const store = new Vuex.Store({
@@ -18,6 +18,7 @@ export const store = new Vuex.Store({
     perPage: 4,
     currentPage: 1,
     payment: 0,
+    sliders: []
   },
   getters: {
     doneTodos: state => {
@@ -88,6 +89,12 @@ export const store = new Vuex.Store({
     },
     getTotal: context => {
       context.commit("getTotal");
+    },
+    getSliders() {
+      axios.get("https://elnic-api.herokuapp.com/api/sliders").then(res => {
+        this.state.sliders = res.data;
+        // console.log(this.sliders);
+      });
     }
   }
 });
