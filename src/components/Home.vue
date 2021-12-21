@@ -150,21 +150,31 @@
                   </div>
                 </div>
                 <div class="preview">
-                  <img :src="all.productThambnail" alt="" style="height:120px" />
+                  <img
+                    :src="all.productThambnail"
+                    alt=""
+                    style="height:120px"
+                  />
                   <div class="preview-buttons valign-middle">
                     <div class="valign-middle-content">
                       <a class="button size-2 style-2" href="#">
-                        <router-link class="button-wrapper" :to="{
-                          name: 'product-detail',
-                          params: { id: all._id }
-                          }">
+                        <router-link
+                          class="button-wrapper"
+                          :to="{
+                            name: 'product-detail',
+                            params: { id: all._id }
+                          }"
+                        >
                           <span class="icon"
                             ><img src="/static/img/icon-1.png" alt=""
                           /></span>
                           <span class="text">Learn More</span>
                         </router-link>
                       </a>
-                      <p class="button size-2 style-3" v-on:click="addToCart(all)">
+                      <p
+                        class="button size-2 style-3"
+                        v-on:click="addToCart(all)"
+                      >
                         <span class="button-wrapper">
                           <span class="icon"
                             ><img src="/static/img/icon-3.png" alt=""
@@ -181,12 +191,13 @@
                     <div class="entry" style="color: #50e3f0;" />
                     <div class="entry" style="color: #eee;" />
                   </div>
-                  <div class="simple-article size-4 dark">{{ all.sellingPrice }}</div>
+                  <div class="simple-article size-4 dark">
+                    {{ all.sellingPrice }}
+                  </div>
                 </div>
                 <div class="description">
                   <div class="simple-article text size-2">
-                    Mollis nec consequat at In feugiat mole stie tortor a
-                    malesuada
+                    {{ all.shortDescp }}
                   </div>
                   <div class="icons">
                     <a class="entry"
@@ -217,13 +228,20 @@
                   </div>
                 </div>
                 <div class="preview">
-                  <img :src="fea.productThambnail" alt="" style="height:120px" />
+                  <img
+                    :src="fea.productThambnail"
+                    alt=""
+                    style="height:120px"
+                  />
                   <div class="preview-buttons valign-middle">
                     <div class="valign-middle-content">
-                      <router-link class="button size-2 style-2"  :to="{
+                      <router-link
+                        class="button size-2 style-2"
+                        :to="{
                           name: 'product-detail',
                           params: { id: fea._id }
-                          }">
+                        }"
+                      >
                         <span class="button-wrapper">
                           <span class="icon"
                             ><img src="/static/img/icon-1.png" alt=""
@@ -231,7 +249,10 @@
                           <span class="text">Learn More</span>
                         </span>
                       </router-link>
-                      <p class="button size-2 style-3" v-on:click="addToCart(all)">
+                      <p
+                        class="button size-2 style-3"
+                        v-on:click="addToCart(all)"
+                      >
                         <span class="button-wrapper">
                           <span class="icon"
                             ><img src="/static/img/icon-3.png" alt=""
@@ -243,7 +264,9 @@
                   </div>
                 </div>
                 <div class="price">
-                  <div class="simple-article size-4 dark">{{ fea.sellingPrice }}</div>
+                  <div class="simple-article size-4 dark">
+                    {{ fea.sellingPrice }}
+                  </div>
                 </div>
                 <div class="description">
                   <div class="simple-article text size-2">
@@ -275,17 +298,24 @@
                     <a href="#">{{ getNameCategory(ons.categoriesId) }}</a>
                   </div>
                   <div class="h6 animate-to-green">
-                    <a href="#">{{ ons.productName}}</a>
+                    <a href="#">{{ ons.productName }}</a>
                   </div>
                 </div>
                 <div class="preview">
-                  <img :src="ons.productThambnail" alt="" style="height:120px"/>
+                  <img
+                    :src="ons.productThambnail"
+                    alt=""
+                    style="height:120px"
+                  />
                   <div class="preview-buttons valign-middle">
                     <div class="valign-middle-content">
-                      <router-link class="button size-2 style-2" :to="{
+                      <router-link
+                        class="button size-2 style-2"
+                        :to="{
                           name: 'product-detail',
                           params: { id: ons._id }
-                          }" >
+                        }"
+                      >
                         <span class="button-wrapper">
                           <span class="icon"
                             ><img src="/static/img/icon-1.png" alt=""
@@ -293,7 +323,10 @@
                           <span class="text">Learn More</span>
                         </span>
                       </router-link>
-                      <p class="button size-2 style-3" v-on:click="addToCart(ons)">
+                      <p
+                        class="button size-2 style-3"
+                        v-on:click="addToCart(ons)"
+                      >
                         <span class="button-wrapper">
                           <span class="icon"
                             ><img src="/static/img/icon-3.png" alt=""
@@ -310,7 +343,9 @@
                     <div class="entry" style="color: #50e3f0;" />
                     <div class="entry" style="color: #eee;" />
                   </div>
-                  <div class="simple-article size-4 dark">{{ ons.sellingPrice }}</div>
+                  <div class="simple-article size-4 dark">
+                    {{ ons.sellingPrice }}
+                  </div>
                 </div>
                 <div class="description">
                   <div class="simple-article text size-2">
@@ -335,7 +370,7 @@
         </div>
         <div class="tab-entry">
           <div class="row nopadding">
-           <div class="col-sm-4" v-for="top in getTopRate" :key="top._id">
+            <div class="col-sm-4" v-for="top in getTopRate" :key="top._id">
               <div class="product-shortcode style-1">
                 <div class="title">
                   <div class="simple-article size-1 color col-xs-b5">
@@ -346,13 +381,20 @@
                   </div>
                 </div>
                 <div class="preview">
-                  <img :src="top.productThambnail" alt="" style="height:120px"/>
+                  <img
+                    :src="top.productThambnail"
+                    alt=""
+                    style="height:120px"
+                  />
                   <div class="preview-buttons valign-middle">
                     <div class="valign-middle-content">
-                      <router-link class="button size-2 style-2" :to="{
+                      <router-link
+                        class="button size-2 style-2"
+                        :to="{
                           name: 'product-detail',
                           params: { id: top._id }
-                          }">
+                        }"
+                      >
                         <span class="button-wrapper">
                           <span class="icon"
                             ><img src="/static/img/icon-1.png" alt=""
@@ -360,7 +402,10 @@
                           <span class="text">Learn More</span>
                         </span>
                       </router-link>
-                      <p class="button size-2 style-3" v-on:click="addToCart(top)">
+                      <p
+                        class="button size-2 style-3"
+                        v-on:click="addToCart(top)"
+                      >
                         <span class="button-wrapper">
                           <span class="icon"
                             ><img src="/static/img/icon-3.png" alt=""
@@ -372,7 +417,9 @@
                   </div>
                 </div>
                 <div class="price">
-                  <div class="simple-article size-4 dark">{{ top.sellingPrice }}</div>
+                  <div class="simple-article size-4 dark">
+                    {{ top.sellingPrice }}
+                  </div>
                 </div>
                 <div class="description">
                   <div class="simple-article text size-2">
@@ -406,6 +453,9 @@ import VueInfiniteAutocomplete from "vue-infinite-autocomplete";
 
 export default {
   created() {
+    if (!User.loggedIn()) {
+      this.$router.push({ name: "login" });
+    }
     this.allProduct();
     this.getAllCategory();
     this.total = this.$store.state.total;
@@ -462,8 +512,7 @@ export default {
       getTopRate: [],
       getOnsale: [],
       getFeature: [],
-      getAll: [],
-
+      getAll: []
     };
   },
   methods: {
@@ -479,10 +528,10 @@ export default {
           this.pg.length = this.pages;
           this.$store.state.pages = this.pages;
           this.products = this.products.slice(0, 9);
-          this.getAll = this.productsView.slice(7,10);
-          this.getOnsale = this.productsView.slice(4,7);
-          this.getFeature = this.productsView.slice(11,14);
-          this.getTopRate = this.productsView.slice(17,20);
+          this.getAll = this.productsView.slice(7, 10);
+          this.getOnsale = this.productsView.slice(4, 7);
+          this.getFeature = this.productsView.slice(11, 14);
+          this.getTopRate = this.productsView.slice(17, 20);
         })
         .catch();
       for (var i = 0; i < this.products.length; i++) {
@@ -494,10 +543,16 @@ export default {
       }
     },
     addToCart(product) {
-      Toast.fire({
+      this.$swal({
+        title: "Add to cart successfully",
         icon: "success",
-        title: "Add to cart successfully"
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 2500,
+        timerProgressBar: true
       });
+
       this.$store.dispatch("addToCart", product);
     },
     getProByPage(numPage) {
@@ -512,7 +567,7 @@ export default {
       this.$store.state.categoryId = 1;
     },
     deleteUser(id) {
-      Swal.fire({
+      this.$swal({
         title: "Are you sure?",
         text: "You won't be able to revert this!",
         icon: "warning",
@@ -532,7 +587,15 @@ export default {
             .catch(() => {
               this.$router.push({ name: "category" });
             });
-          Swal.fire("Deleted!", "Your file has been deleted.", "success");
+          this.$swal({
+            title: "Deleted successfully!",
+            icon: "success",
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 2500,
+            timerProgressBar: true
+          });
         }
       });
     },
@@ -544,18 +607,30 @@ export default {
       this.$store.state.categoryId = 0;
     },
     getAllCategory() {
-        axios.get("https://elnic-api.herokuapp.com/api/categories")
-        .then (res => {
-            this.categories = res.data ;
-            this.$store.state.categories = res.data;
-            console.log(res);
+      axios
+        .get("https://elnic-api.herokuapp.com/api/categories")
+        .then(res => {
+          this.categories = res.data;
+          this.$store.state.categories = res.data;
+          // console.log(res);
         })
-        .catch( err => console.log(err))
+        .catch(err =>
+          this.$swal({
+            title: "Error getting categories",
+            text: "Contact admin to solve problem",
+            icon: "error",
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 2500,
+            timerProgressBar: true
+          })
+        );
     },
     getNameCategory(categoryId) {
-      const category = this.categories.filter(
-        obj => {return obj._id === categoryId}
-      );
+      const category = this.categories.filter(obj => {
+        return obj._id === categoryId;
+      });
 
       return category.categoryName;
     }

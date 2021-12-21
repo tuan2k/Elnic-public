@@ -12,6 +12,7 @@ import { store } from "./storage/store";
 import Swal from "sweetalert2";
 import Vuex from "vuex";
 import { BootstrapVue, IconsPlugin } from "bootstrap-vue";
+import VueSweetalert2 from "vue-sweetalert2";
 
 Vue.use(Vuex);
 
@@ -24,6 +25,7 @@ window.Swal = Swal;
 Vue.use(BootstrapVue);
 // Optionally install the BootstrapVue icon components plugin
 Vue.use(IconsPlugin);
+Vue.use(VueSweetalert2);
 
 const Toast = Swal.mixin({
   toast: true,
