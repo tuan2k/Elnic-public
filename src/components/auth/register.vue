@@ -29,6 +29,7 @@
                   class="form-control form-control-lg"
                   placeholder="Enter user name"
                   v-model="form.username"
+                  required
                 />
               </div>
 
@@ -36,15 +37,16 @@
               <br />
 
               <div class="form-outline mb-3">
-                <label class="form-label" for="form3Example3"
-                  >Email address</label
-                >
+                <label class="form-label" for="form3Example3">
+                  Email address
+                </label>
                 <input
                   type="email"
                   id="form3Example4"
                   class="form-control form-control-lg"
                   placeholder="Enter Email"
                   v-model="form.email"
+                  required
                 />
               </div>
 
@@ -59,12 +61,11 @@
                   class="form-control form-control-lg"
                   placeholder="Enter password"
                   v-model="form.password"
+                  required
                 />
               </div>
-
               <br />
               <br />
-
               <div class="text-center text-lg-start mt-4 pt-2">
                 <button
                   type="submit"
@@ -106,15 +107,28 @@ export default {
       axios
         .post("https://elnic.herokuapp.com/api/auth/signup", this.form)
         .then(res => {
-          Toast.fire({
+          this.$swal({
+            title: "Signup successfully",
             icon: "success",
-            title: "Signup successfully"
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 1500,
+            timerProgressBar: true
           });
           this.$router.push({ name: "login" });
         })
         .catch(error => {
           this.errors = error.response;
-          console.log(error);
+          this.$swal({
+            title: "Getting error when registering. Plsease try again",
+            icon: "error",
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 2500,
+            timerProgressBar: true
+          });
         })
         .catch();
     }

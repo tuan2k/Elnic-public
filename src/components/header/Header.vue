@@ -15,26 +15,31 @@
               </div>
             </div>
             <div class="col-md-7 col-md-text-right">
-              <span v-if="this.fullname === '' || this.fullname === undefined">
+              <span
+                v-if="
+                  this.fullname === '' ||
+                    this.fullname === undefined ||
+                    this.fullname === null
+                "
+              >
                 <div class="entry">
-                  <router-link to="/login" class="open-popup" data-rel="1"
-                    ><b>login</b> </router-link
-                  >&nbsp; or &nbsp;<router-link
-                    to="/register"
-                    class="open-popup"
-                    data-rel="2"
-                    ><b>register</b></router-link
-                  >
+                  <router-link to="/login" class="open-popup" data-rel="1">
+                    <b>login</b>
+                  </router-link>
+                  &nbsp; or &nbsp;
+                  <router-link to="/register" class="open-popup" data-rel="2">
+                    <b>register</b>
+                  </router-link>
                 </div>
               </span>
               <span v-else>
                 <div class="entry">
-                  <p to="/login" class="open-popup" data-rel="1">
+                  <p class="open-popup" data-rel="1">
                     Welcome <b>{{ this.fullname }}</b>
                   </p>
                 </div>
               </span>
-              <div class="entry hidden-xs hidden-sm">
+              <!-- <div class="entry hidden-xs hidden-sm">
                 <a href="#"
                   ><img
                     src="../../../static/icons/heart-thin.svg"
@@ -42,12 +47,13 @@
                     height="12px"
                     alt="heart"
                 /></a>
-              </div>
+              </div> -->
               <div class="entry hidden-xs hidden-sm cart">
                 <router-link to="/cart">
                   <b class="hidden-xs">Your bag</b>
-                  <span class="cart-icon">
-                    <i class="fa fa-shopping-bag" aria-hidden="true"></i>
+                  <span class="cart-icon px-2">
+                    <!-- <i class="fa fa-shopping-bag" aria-hidden="true"></i> -->
+                    <b-icon icon="shop" scale="2" class=""></b-icon>
                     <span class="cart-label">{{ count }}</span>
                   </span>
                 </router-link>
@@ -151,31 +157,6 @@
               </div>
             </div>
           </div>
-          <!-- <div class="header-search-wrapper">
-            <div class="header-search-content">
-              <div class="container-fluid">
-                <div class="row">
-                  <div
-                    class="col-sm-8 col-sm-offset-2 col-lg-6 col-lg-offset-3"
-                  >
-                    <form>
-                      <div class="search-submit">
-                        <i class="fa fa-search" aria-hidden="true"></i>
-                        <input type="submit" />
-                      </div>
-                      <input
-                        class="simple-input style-1"
-                        type="text"
-                        value=""
-                        placeholder="Enter keyword"
-                      />
-                    </form>
-                  </div>
-                </div>
-              </div>
-              <div class="button-close"></div>
-            </div>
-          </div> -->
         </div>
       </div>
     </header>

@@ -31,6 +31,7 @@
                   class="form-control form-control-lg"
                   placeholder="Enter a valid email address"
                   v-model="form.username"
+                  required
                 />
               </div>
               <br />
@@ -43,6 +44,7 @@
                   class="form-control form-control-lg"
                   placeholder="Enter password"
                   v-model="form.password"
+                  required
                 />
               </div>
 
@@ -95,22 +97,36 @@ export default {
   },
   methods: {
     login() {
-      console.log(this.form.username + this.form.password);
+      // console.log(this.form.username + this.form.password);
       axios
         .post("https://elnic.herokuapp.com/api/auth/signin", this.form)
         .then(res => {
-          console.log(res);
+          // console.log(res);
           this.$store.state.username = res.data.username;
           User.responseAfterLogin(res);
           this.$router.push({ name: "home" });
-          Toast.fire({
+          this.$swal({
+            title: "Signed in successfully",
             icon: "success",
-            title: "Signed in successfully"
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 2500,
+            timerProgressBar: true
           });
         })
         .catch(error => {
           this.errors = error.response;
-          console.log(error);
+          // console.log(error);
+          this.$swal({
+            title: "Invalid Email or Password",
+            icon: "error",
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 2500,
+            timerProgressBar: true
+          });
         })
         .catch();
     }
