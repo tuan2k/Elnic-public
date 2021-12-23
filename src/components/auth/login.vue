@@ -22,6 +22,10 @@
               <br />
               <br />
               <br />
+              <div class="form-group">
+                  <router-link to="/"><h2 class="btn btn-primary" style="margin:center">Trang chủ</h2></router-link>
+              </div>
+              <br/>
               <div class="form-outline mb-4">
                 <label class="form-label" for="form3Example3"
                   >Email address</label
@@ -65,7 +69,7 @@
                 <br />
                 <p class="small fw-bold mt-2 pt-1 mb-0">
                   Don't have an account?
-                  <router-link to="/register" class="link-danger"
+                  <router-link to="/register" class="link-danger color"
                     >Register</router-link
                   >
                 </p>
@@ -97,7 +101,6 @@ export default {
   },
   methods: {
     login() {
-      // console.log(this.form.username + this.form.password);
       axios
         .post("https://elnic.herokuapp.com/api/auth/signin", this.form)
         .then(res => {

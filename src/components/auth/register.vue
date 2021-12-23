@@ -22,6 +22,10 @@
               <br />
               <br />
               <br />
+               <div class="form-group">
+                  <router-link to="/"><h2 class="btn btn-primary" style="margin:center">Trang chủ</h2></router-link>
+              </div>
+              <br/>
               <div class="form-outline mb-4">
                 <label class="form-label" for="form3Example3">User Name</label>
                 <input

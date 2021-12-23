@@ -18,8 +18,8 @@
               <span
                 v-if="
                   this.fullname === '' ||
-                    this.fullname === undefined ||
-                    this.fullname === null
+                  this.fullname === undefined ||
+                  this.fullname === null
                 "
               >
                 <div class="entry">
@@ -32,31 +32,23 @@
                   </router-link>
                 </div>
               </span>
-              <span v-else>
+              <span v-if="this.fullname !== '' && this.fullname !== undefined && this.fullname !== null">
                 <div class="entry">
                   <p class="open-popup" data-rel="1">
-                    Welcome <b>{{ this.fullname }}</b>
+                    Chào mừng <b>{{ this.fullname }}</b>
                   </p>
                 </div>
               </span>
-              <!-- <div class="entry hidden-xs hidden-sm">
-                <a href="#"
-                  ><img
-                    src="../../../static/icons/heart-thin.svg"
-                    width="12px"
-                    height="12px"
-                    alt="heart"
-                /></a>
-              </div> -->
               <div class="entry hidden-xs hidden-sm cart">
                 <router-link to="/cart">
-                  <b class="hidden-xs">Your bag</b>
+                  <b class="hidden-xs">Giỏ hàng</b>
                   <span class="cart-icon px-2">
                     <!-- <i class="fa fa-shopping-bag" aria-hidden="true"></i> -->
                     <b-icon icon="shop" scale="2" class=""></b-icon>
                     <span class="cart-label">{{ count }}</span>
                   </span>
                 </router-link>
+                <span v-if="this.fullname !== '' && this.fullname !== undefined && this.fullname !== null" v-on:click="logout()"><strong>Đăng xuất</strong></span>
                 <div class="cart-toggle hidden-xs hidden-sm">
                   <div
                     class="cart-overflow"
@@ -80,7 +72,7 @@
                                 :key="qt[index]"
                               >
                                 <span v-if="i === index"
-                                  >QUANTITY: {{ qt }}</span
+                                  >Số lượng: {{ qt }}</span
                                 >
                               </div>
                             </td>
@@ -94,7 +86,7 @@
                                 class="simple-article size-1"
                               >
                                 <span v-if="ind === index"
-                                  >TOTAL: {{ cart.discountPrice * qt }}</span
+                                  >Tổng tiền: {{ cart.discountPrice * qt }}</span
                                 >
                               </div>
                             </td>
@@ -128,9 +120,6 @@
                 </div>
               </div>
               <div class="hamburger-icon">
-                <span></span>
-                <span></span>
-                <span></span>
               </div>
             </div>
           </div>
@@ -163,91 +152,102 @@
 
     <div class="header-empty-space"></div>
     <div class="slider-wrapper">
-      <div class="swiper-button-prev visible-lg"></div>
-      <div class="swiper-button-next visible-lg"></div>
-      <div class="swiper-container" data-parallax="1" data-auto-height="1">
-        <div class="swiper-wrapper">
-          <div class="swiper-slide" v-for="sl in sliders" :key="sl._id">
-            <div class="container">
-              <div class="row">
-                <div class="col-sm-6">
-                  <div class="cell-view page-height">
-                    <div class="col-xs-b40 col-sm-b80"></div>
-                    <div data-swiper-parallax-x="-600">
-                      <div class="simple-article grey size-5">
-                        BEST PRICE <span class="color">$199.00</span>
-                      </div>
-                      <div class="col-xs-b5"></div>
+    <div class="swiper-button-prev visible-lg"></div>
+    <div class="swiper-button-next visible-lg"></div>
+    <div class="swiper-container" data-parallax="1" data-auto-height="1">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide" v-for="sl in sliders" :key="sl._id">
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="cell-view page-height">
+                  <div class="col-xs-b40 col-sm-b80"></div>
+                  <div data-swiper-parallax-x="-600">
+                    <div class="simple-article grey size-5">
+                      BEST PRICE <span class="color">$199.00</span>
                     </div>
-                    <div data-swiper-parallax-x="-500">
-                      <h1 class="h1">smartphone x transform</h1>
-                      <div class="title-underline left"><span></span></div>
-                    </div>
-                    <div data-swiper-parallax-x="-400">
-                      <div class="simple-article size-4 grey">
-                        In feugiat molestie tortor a malesuada. Etiam a
-                        venenatis ipsum. Proin pharetra elit at feugiat commodo
-                        vel placerat tincidunt sapien nec
-                      </div>
-                      <div class="col-xs-b30"></div>
-                    </div>
-                    <div data-swiper-parallax-x="-300">
-                      <div class="buttons-wrapper">
-                        <a class="button size-2 style-2" href="#">
-                          <span class="button-wrapper">
-                            <span class="icon"
-                              ><img :src="sl.imgUrl" alt=""
-                            /></span>
-                            <span class="text">Learn More</span>
-                          </span>
-                        </a>
-                        <a class="button size-2 style-3" href="#">
-                          <span class="button-wrapper">
-                            <span class="icon"
-                              ><img :src="sl.imgUrl" alt=""
-                            /></span>
-                            <span class="text">Add To Cart</span>
-                          </span>
-                        </a>
-                      </div>
-                    </div>
-                    <div class="col-xs-b40 col-sm-b80"></div>
+                    <div class="col-xs-b5"></div>
                   </div>
+                  <div data-swiper-parallax-x="-500">
+                    <h1 class="h1">smartphone x transform</h1>
+                    <div class="title-underline left"><span></span></div>
+                  </div>
+                  <div data-swiper-parallax-x="-400">
+                    <div class="simple-article size-4 grey">
+                      In feugiat molestie tortor a malesuada. Etiam a venenatis
+                      ipsum. Proin pharetra elit at feugiat commodo vel placerat
+                      tincidunt sapien nec
+                    </div>
+                    <div class="col-xs-b30"></div>
+                  </div>
+                  <div data-swiper-parallax-x="-300">
+                    <div class="buttons-wrapper">
+                      <a class="button size-2 style-2" href="#">
+                        <span class="button-wrapper">
+                          <span class="icon"
+                            ><img :src="sl.imgUrl" alt=""
+                          /></span>
+                          <span class="text">Learn More</span>
+                        </span>
+                      </a>
+                      <a class="button size-2 style-3" href="#">
+                        <span class="button-wrapper">
+                          <span class="icon"
+                            ><img :src="sl.imgUrl" alt=""
+                          /></span>
+                          <span class="text">Add To Cart</span>
+                        </span>
+                      </a>
+                    </div>
+                  </div>
+                  <div class="col-xs-b40 col-sm-b80"></div>
                 </div>
               </div>
-              <div class="slider-product-preview">
-                <div class="product-preview-shortcode">
-                  <div class="preview">
-                    <div
-                      class="entry full-size swiper-lazy active"
-                    >
-                    <img :src="sl.imgUrl" style="width:300px;height:300px;"/>
-                    </div>
+            </div>
+            <div class="slider-product-preview">
+              <div class="product-preview-shortcode">
+                <div class="preview">
+                  <div class="swiper-lazy-preloader">
+                      <img :src="sl.imgUrl"/>
                   </div>
                   <div
-                    class="sidebar valign-middle"
-                    data-swiper-parallax-x="-300"
-                  >
-                    <div class="valign-middle-content">
-                      <div class="entry active">
-                        <img :src="sl.imgUrl" alt="" />
-                      </div>
-                      <div class="entry">
-                        <img :src="sl.imgUrl" alt="" />
-                      </div>
-                      <div class="entry">
-                        <img :src="sl.imgUrl" alt="" />
-                      </div>
+                    class="entry full-size swiper-lazy active"
+                    :data-background="sl.imgUrl"
+                  ></div>
+                  <div
+                    class="entry full-size swiper-lazy"
+                    :data-background="sl.imgUrl"
+                  ></div>
+                  <div
+                    class="entry full-size swiper-lazy"
+                    :data-background="sl.imgUrl"
+                  ></div>
+                </div>
+                <div
+                  class="sidebar valign-middle"
+                  data-swiper-parallax-x="-300"
+                >
+                  <div class="valign-middle-content">
+                    <div class="entry active">
+                      <img :src="sl.imgUrl" alt="" />
+                    </div>
+                    <div class="entry">
+                      <img :src="sl.imgUrl" alt="" />
+                    </div>
+                    <div class="entry">
+                      <img :src="sl.imgUrl" alt="" />
                     </div>
                   </div>
                 </div>
               </div>
             </div>
+            <div class="empty-space col-xs-b80 col-sm-b0"></div>
           </div>
         </div>
-        <div class="swiper-pagination"></div>
       </div>
+      <div class="swiper-pagination"></div>
     </div>
+  </div>
   </div>
 </template>
 
@@ -310,6 +310,21 @@ export default {
             console.log(this.sliders);
         })
         .catch( err => console.log(err))
+    },
+    logout(){
+        localStorage.removeItem("user");
+        localStorage.removeItem("token");
+        localStorage.removeItem("id");
+        this.$router.push({name:'login'});
+        this.$swal({
+        title: "Đăng xuất thành công!!!",
+        icon: "success",
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 2500,
+        timerProgressBar: true
+      });
     }
   }
 };

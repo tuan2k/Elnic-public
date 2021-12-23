@@ -1,18 +1,20 @@
 <template>
   <div>
-    <Slider />
     <div class="col-md-9 col-md-push-3">
       <div class="tabs-block">
         <div class="empty-space col-xs-b10" />
         <div class="tab-entry visible">
           <div class="row nopadding">
-            <label>Filter Auto Complete</label>
+            <label>Tìm kiếm sản phẩm</label>
+            <div class="form-control">
             <VueInfiniteAutocomplete
               :data-source="currentOptions"
               :value="currentValue"
               :fetch-size="10"
               v-on:select="handleOnSelect"
             ></VueInfiniteAutocomplete>
+            </div>
+            <br/>
             <div
               class="col-sm-4"
               v-for="product in filtersearch"
@@ -472,12 +474,8 @@
 <script type="text/javascript">
 import axios from "axios";
 import VueInfiniteAutocomplete from "vue-infinite-autocomplete";
-import Slider from "@/components/header/slider.vue";
 export default {
   created() {
-    // if (!User.loggedIn()) {
-    //   this.$router.push({ name: "login" });
-    // }
     this.allProduct();
     this.getAllCategory();
     this.total = this.$store.state.total;
@@ -485,7 +483,6 @@ export default {
 
   components: {
     VueInfiniteAutocomplete,
-    Slider
   },
   computed: {
     filtersearch() {
