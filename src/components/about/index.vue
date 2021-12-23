@@ -2,7 +2,7 @@
   <div>
     <div
       class="block-entry fixed-background"
-      style="background-image: url(img/background-24.jpg);"
+      style="background-image: url(../../../static/images/elnic/background-24.jpg);"
     >
       <div class="container">
         <div class="row">
@@ -24,7 +24,6 @@
       </div>
     </div>
 
-    <div class="empty-space col-xs-b35 col-md-b70" />
     <div class="empty-space col-xs-b35 col-md-b70" />
 
     <div class="container">
@@ -64,7 +63,7 @@
 
     <div class="empty-space col-xs-b35 col-md-b70" />
 
-    <div class="container">
+    <!-- <div class="container">
       <div class="slider-wrapper">
         <div class="swiper-button-prev hidden" />
         <div class="swiper-button-next hidden" />
@@ -83,7 +82,7 @@
               <div class="icon-description-shortcode style-2">
                 <img
                   class="image-icon image-thumbnail rounded-image"
-                  src="img/thumbnail-35.jpg"
+                  src="../../../static/images/elnic/thumbnail-35.jpg"
                   alt=""
                 />
                 <div class="content">
@@ -100,7 +99,7 @@
               <div class="icon-description-shortcode style-2">
                 <img
                   class="image-icon image-thumbnail rounded-image"
-                  src="img/thumbnail-36.jpg"
+                  src="../../../static/images/elnic/thumbnail-36.jpg"
                   alt=""
                 />
                 <div class="content">
@@ -117,7 +116,7 @@
               <div class="icon-description-shortcode style-2">
                 <img
                   class="image-icon image-thumbnail rounded-image"
-                  src="img/thumbnail-37.jpg"
+                  src="../../../static/images/elnic/thumbnail-37.jpg"
                   alt=""
                 />
                 <div class="content">
@@ -134,7 +133,7 @@
               <div class="icon-description-shortcode style-2">
                 <img
                   class="image-icon image-thumbnail rounded-image"
-                  src="img/thumbnail-35.jpg"
+                  src="../../../static/images/elnic/thumbnail-35.jpg"
                   alt=""
                 />
                 <div class="content">
@@ -151,7 +150,7 @@
               <div class="icon-description-shortcode style-2">
                 <img
                   class="image-icon image-thumbnail rounded-image"
-                  src="img/thumbnail-36.jpg"
+                  src="../../../static/images/elnic/thumbnail-36.jpg"
                   alt=""
                 />
                 <div class="content">
@@ -168,7 +167,7 @@
               <div class="icon-description-shortcode style-2">
                 <img
                   class="image-icon image-thumbnail rounded-image"
-                  src="img/thumbnail-37.jpg"
+                  src="../../../static/images/elnic/thumbnail-37.jpg"
                   alt=""
                 />
                 <div class="content">
@@ -185,9 +184,8 @@
           <div class="swiper-pagination relative-pagination" />
         </div>
       </div>
-    </div>
-    <div class="empty-space col-xs-b35 col-md-b70" />
-    <div class="empty-space col-xs-b35 col-md-b70" />
+    </div> -->
+
     <!-- <div class="container">
       <div class="text-center">
         <div class="simple-article size-3 grey uppercase col-xs-b5">
@@ -196,9 +194,9 @@
         <div class="h2">meet with professionals</div>
         <div class="title-underline center"><span /></div>
       </div>
-    </div> -->
-    <div class="empty-space col-xs-b35 col-md-b70" />
-    <!-- <div class="container">
+    </div>
+    
+    <div class="container">
       <div class="slider-wrapper our-team-slider">
         <div class="swiper-button-prev hidden-xs hidden-sm" />
         <div class="swiper-button-next hidden-xs hidden-sm" />
@@ -215,7 +213,10 @@
             <div class="swiper-slide">
               <div class="product-shortcode style-9">
                 <div class="preview">
-                  <img src="img/thumbnail-40.jpg" alt="" />
+                  <img
+                    src="../../../static/images/elnic/thumbnail-40.jpg"
+                    alt=""
+                  />
                 </div>
                 <div class="content">
                   <div class="title">
@@ -245,7 +246,10 @@
             <div class="swiper-slide">
               <div class="product-shortcode style-9">
                 <div class="preview">
-                  <img src="img/thumbnail-41.jpg" alt="" />
+                  <img
+                    src="../../../static/images/elnic/thumbnail-41.jpg"
+                    alt=""
+                  />
                 </div>
                 <div class="content">
                   <div class="title">
@@ -275,7 +279,10 @@
             <div class="swiper-slide">
               <div class="product-shortcode style-9">
                 <div class="preview">
-                  <img src="img/thumbnail-42.jpg" alt="" />
+                  <img
+                    src="../../../static/images/elnic/thumbnail-42.jpg"
+                    alt=""
+                  />
                 </div>
                 <div class="content">
                   <div class="title">
@@ -305,7 +312,10 @@
             <div class="swiper-slide">
               <div class="product-shortcode style-9">
                 <div class="preview">
-                  <img src="img/thumbnail-43.jpg" alt="" />
+                  <img
+                    src="../../../static/images/elnic/thumbnail-43.jpg"
+                    alt=""
+                  />
                 </div>
                 <div class="content">
                   <div class="title">
@@ -335,7 +345,10 @@
             <div class="swiper-slide">
               <div class="product-shortcode style-9">
                 <div class="preview">
-                  <img src="img/thumbnail-40.jpg" alt="" />
+                  <img
+                    src="../../../static/images/elnic/thumbnail-40.jpg"
+                    alt=""
+                  />
                 </div>
                 <div class="content">
                   <div class="title">
@@ -365,7 +378,10 @@
             <div class="swiper-slide">
               <div class="product-shortcode style-9">
                 <div class="preview">
-                  <img src="img/thumbnail-41.jpg" alt="" />
+                  <img
+                    src="../../../static/images/elnic/thumbnail-41.jpg"
+                    alt=""
+                  />
                 </div>
                 <div class="content">
                   <div class="title">
@@ -395,7 +411,10 @@
             <div class="swiper-slide">
               <div class="product-shortcode style-9">
                 <div class="preview">
-                  <img src="img/thumbnail-42.jpg" alt="" />
+                  <img
+                    src="../../../static/images/elnic/thumbnail-42.jpg"
+                    alt=""
+                  />
                 </div>
                 <div class="content">
                   <div class="title">
@@ -425,7 +444,10 @@
             <div class="swiper-slide">
               <div class="product-shortcode style-9">
                 <div class="preview">
-                  <img src="img/thumbnail-43.jpg" alt="" />
+                  <img
+                    src="../../../static/images/elnic/thumbnail-43.jpg"
+                    alt=""
+                  />
                 </div>
                 <div class="content">
                   <div class="title">

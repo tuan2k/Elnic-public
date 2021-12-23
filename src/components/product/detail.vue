@@ -161,10 +161,8 @@
             </div>
             <div class="empty-space col-xs-b30 col-sm-b60" />
 
-            <div class="tab-entry visible">
-              
-            </div>
-              <div class="tab-entry">
+            <div class="tab-entry visible"></div>
+            <div class="tab-entry">
               <div class="testimonial-entry">
                 <div class="row col-xs-b20">
                   <div class="col-xs-8" v-for="rv in reviews" :key="rv._id">
@@ -216,7 +214,12 @@
                   <div class="col-xs-6 text-right">
                     <div class="button size-2 style-3">
                       <span class="button-wrapper">
-                        <button class="btn btn-primary" v:on:click="saveReview()">submit</button>
+                        <button
+                          class="btn btn-primary"
+                          v:on:click="saveReview()"
+                        >
+                          submit
+                        </button>
                       </span>
                     </div>
                   </div>
@@ -253,77 +256,94 @@ export default {
   },
   data() {
     return {
-      form : [],
+      form: [],
       carts: [],
-      userIdLogin: '',
-      comment: '',
+      userIdLogin: "",
+      comment: "",
       rating: 5,
       reviews: [],
-      username: '',
+      username: ""
     };
   },
   methods: {
-        getCartItems() {
-          this.carts = this.$store.state.cartItems;
-        },
-        addToCart(product) {
-          Toast.fire({
-                    icon: 'success',
-                    title: 'Add to cart successfully'
-          });
-          this.$store.dispatch("addToCart", product);
-        },
-        deleteReview(id){
-        Swal.fire({
-                title: 'Bạn có chắc chắn muốn xóa?',
-                text: "Bạn sẽ không thể lấy lại dữ liệu!!!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Xóa',
-                cancelButtonText: 'Hủy bỏ'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    axios.delete("https://elnic-api.herokuapp.com/api/review/"+id)
-                    .then(data => {
-                        this.reviews = this.reviews.filter( rv => {
-                          return rv._id !== id;
-                        })
-                        Toast.fire({
-                              icon: 'success',
-                              title: 'Xóa bình luận thành công!!!'
-                        });
-                      })
-                      .catch(error => {
-                        this.errors = error.response;
-                        console.log(error);
-                      })
-                }
-            })
-        },
-        getAllReview(){
-          let id = this.form._id;
-          axios.get("https://elnic-api.herokuapp.com/api/review/findByProductId/"+id)
-          .then(res => {
-              this.reviews = res.data
-              console.log(res);
+    getCartItems() {
+      this.carts = this.$store.state.cartItems;
+    },
+    addToCart(product) {
+      Toast.fire({
+        icon: "success",
+        title: "Add to cart successfully"
+      });
+      this.$store.dispatch("addToCart", product);
+    },
+    deleteReview(id) {
+      Swal.fire({
+        title: "Bạn có chắc chắn muốn xóa?",
+        text: "Bạn sẽ không thể lấy lại dữ liệu!!!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Xóa",
+        cancelButtonText: "Hủy bỏ"
+      }).then(result => {
+        if (result.isConfirmed) {
+          axios
+            .delete("https://elnic-api.herokuapp.com/api/review/" + id)
+            .then(data => {
+              this.reviews = this.reviews.filter(rv => {
+                return rv._id !== id;
+              });
+              this.$swal({
+                title: "Delete comment success <3",
+                icon: "success",
+                toast: true,
+                position: "top-end",
+                showConfirmButton: false,
+                timer: 1500,
+                timerProgressBar: true
+              });
             })
             .catch(error => {
               this.errors = error.response;
               console.log(error);
-            })
-        },
-        saveReview(){
-           let userId = localStorage.getItem("id");
-           let obj = {"userId" : userId,"username": this.username, "rating":this.rating, "sumarry": this.comment, "productId":this.form._id};
-          console.log(obj)
-          axios.post("https://elnic-api.herokuapp.com/api/review",obj)
-          .then(res => {
-            this.comment = "";
-            this.rating = 5;
-            let id = this.form._id;
-            axios.get("https://elnic-api.herokuapp.com/api/review/findByProductId/"+id)
+            });
+        }
+      });
+    },
+    getAllReview() {
+      let id = this.form._id;
+      axios
+        .get("https://elnic-api.herokuapp.com/api/review/findByProductId/" + id)
+        .then(res => {
+          this.reviews = res.data;
+          console.log(res);
+        })
+        .catch(error => {
+          this.errors = error.response;
+          console.log(error);
+        });
+    },
+    saveReview() {
+      let userId = localStorage.getItem("id");
+      let obj = {
+        userId: userId,
+        username: this.username,
+        rating: this.rating,
+        sumarry: this.comment,
+        productId: this.form._id
+      };
+      console.log(obj);
+      axios
+        .post("https://elnic-api.herokuapp.com/api/review", obj)
+        .then(res => {
+          this.comment = "";
+          this.rating = 5;
+          let id = this.form._id;
+          axios
+            .get(
+              "https://elnic-api.herokuapp.com/api/review/findByProductId/" + id
+            )
             .then(res => {
               this.reviews = res.data;
               this.$swal({
@@ -355,6 +375,6 @@ export default {
           console.log(error);
         });
     }
-    }
-}
+  }
+};
 </script>

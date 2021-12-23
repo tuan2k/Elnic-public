@@ -17,9 +17,7 @@
             <div class="col-md-7 col-md-text-right">
               <span
                 v-if="
-                  this.fullname === '' ||
-                  this.fullname === undefined ||
-                  this.fullname === null
+                  this.fullname === '' || this.fullname === undefined || this.fullname === null
                 "
               >
                 <div class="entry">
@@ -140,7 +138,20 @@
                       <router-link to="/about">about us</router-link>
                     </li>
                     <li><router-link to="/contact">contact</router-link></li>
-                    <li><router-link :to="{ name: 'history',params:{id: idUser}}"><span v-if="fullname !== '' && fullname !== null && fullname!== undefined">My Orders</span></router-link></li>
+                    <li>
+                      <router-link
+                        :to="{ name: 'history', params: { id: idUser } }"
+                      >
+                        <span
+                          v-if="
+                            fullname !== '' &&
+                              fullname !== null &&
+                              fullname !== undefined
+                          "
+                          >My Orders
+                        </span>
+                      </router-link>
+                    </li>
                   </ul>
                 </nav>
               </div>
@@ -252,18 +263,19 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from "axios";
 export default {
   name: "ElnicHeader",
   created() {
     this.getCartItems();
     this.getQuantity();
     this.getProduct();
-    this.getSilder()
+    // this.$store.dispatch("getSliders");
+    this.getSilder();
     this.username = this.$store.state.username;
     this.fullname = localStorage.getItem("user");
     this.idUser = localStorage.getItem("id");
-    console.log(this.fullname);
+    // console.log(this.fullname);
   },
   computed: {
     count() {
@@ -276,9 +288,9 @@ export default {
       quantity: [],
       products: [],
       username: "",
-      fullname: '',
+      fullname: "",
       form: {},
-      sliders: [],
+      sliders: []
     };
   },
   computed: {
@@ -303,11 +315,12 @@ export default {
         }
       }
     },
-    getSilder(){
-      axios.get("https://elnic-api.herokuapp.com/api/sliders")
-        .then (res => {
-            this.sliders = res.data ;
-            console.log(this.sliders);
+    getSilder() {
+      axios
+        .get("https://elnic-api.herokuapp.com/api/sliders")
+        .then(res => {
+          this.sliders = res.data;
+          console.log(this.sliders);
         })
         .catch( err => console.log(err))
     },

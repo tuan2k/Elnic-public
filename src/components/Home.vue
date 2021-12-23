@@ -474,6 +474,7 @@
 <script type="text/javascript">
 import axios from "axios";
 import VueInfiniteAutocomplete from "vue-infinite-autocomplete";
+// import Slider from "@/components/header/slider.vue";
 export default {
   created() {
     this.allProduct();
@@ -483,6 +484,7 @@ export default {
 
   components: {
     VueInfiniteAutocomplete,
+    // Slider
   },
   computed: {
     filtersearch() {
