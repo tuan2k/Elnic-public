@@ -1,6 +1,5 @@
 <template>
   <div>
-    <Slider />
     <div class="col-md-9 col-md-push-3">
       <div class="tabs-block">
         <div class="empty-space col-xs-b10" />
@@ -472,7 +471,7 @@
 <script type="text/javascript">
 import axios from "axios";
 import VueInfiniteAutocomplete from "vue-infinite-autocomplete";
-import Slider from "@/components/header/slider.vue";
+// import Slider from "@/components/header/slider.vue";
 export default {
   created() {
     // if (!User.loggedIn()) {
@@ -485,7 +484,7 @@ export default {
 
   components: {
     VueInfiniteAutocomplete,
-    Slider
+    // Slider
   },
   computed: {
     filtersearch() {
