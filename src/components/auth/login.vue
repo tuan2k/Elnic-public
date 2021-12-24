@@ -63,14 +63,14 @@
                   class="btn btn-primary btn-lg"
                   style="padding-left: 2.5rem; padding-right: 2.5rem;"
                 >
-                  Login
+                  Đăng nhập
                 </button>
                 <br />
                 <br />
                 <p class="small fw-bold mt-2 pt-1 mb-0">
-                  Don't have an account?
+                  Bạn không có tài khoản?
                   <router-link to="/register" class="link-danger color"
-                    >Register</router-link
+                    >Đăng ký</router-link
                   >
                 </p>
               </div>
@@ -109,7 +109,7 @@ export default {
           User.responseAfterLogin(res);
           this.$router.push({ name: "home" });
           this.$swal({
-            title: "Signed in successfully",
+            title: "Đăng nhập thành công!!!",
             icon: "success",
             toast: true,
             position: "top-end",
@@ -122,7 +122,7 @@ export default {
           this.errors = error.response;
           // console.log(error);
           this.$swal({
-            title: "Invalid Email or Password",
+            title: "Mật khẩu hoặc tên đăng nhập không đúng!!!",
             icon: "error",
             toast: true,
             position: "top-end",

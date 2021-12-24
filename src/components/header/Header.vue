@@ -110,7 +110,7 @@
                           <span class="icon"
                             ><img src="img/icon-4.png" alt=""
                           /></span>
-                          <span class="text">proceed to checkout</span>
+                          <span class="text">Thanh toán</span>
                         </span>
                       </router-link>
                     </div>
@@ -132,12 +132,12 @@
                 <nav>
                   <ul>
                     <li class="active">
-                      <router-link to="/">Home</router-link>
+                      <router-link to="/">Trang chủ</router-link>
                     </li>
                     <li>
-                      <router-link to="/about">about us</router-link>
+                      <router-link to="/about">Elnic</router-link>
                     </li>
-                    <li><router-link to="/contact">contact</router-link></li>
+                    <li><router-link to="/contact">Liên lạc</router-link></li>
                     <li>
                       <router-link
                         :to="{ name: 'history', params: { id: idUser } }"
@@ -148,7 +148,7 @@
                               fullname !== null &&
                               fullname !== undefined
                           "
-                          >My Orders
+                          >Lịch sử
                         </span>
                       </router-link>
                     </li>
@@ -162,7 +162,7 @@
     </header>
 
     <div class="header-empty-space"></div>
-    <div class="slider-wrapper">
+    <!-- <div class="slider-wrapper">
     <div class="swiper-button-prev visible-lg"></div>
     <div class="swiper-button-next visible-lg"></div>
     <div class="swiper-container" data-parallax="1" data-auto-height="1">
@@ -218,7 +218,7 @@
             <div class="slider-product-preview">
               <div class="product-preview-shortcode">
                 <div class="preview">
-                  <div class="swiper-lazy-preloader">
+                  <div class="">
                       <img :src="sl.imgUrl"/>
                   </div>
                   <div
@@ -258,7 +258,7 @@
       </div>
       <div class="swiper-pagination"></div>
     </div>
-  </div>
+    </div> -->
   </div>
 </template>
 

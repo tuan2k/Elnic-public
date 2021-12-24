@@ -76,7 +76,7 @@
                   class="btn btn-primary btn-lg"
                   style="padding-left: 2.5rem; padding-right: 2.5rem;"
                 >
-                  Register
+                  Đăng ký
                 </button>
               </div>
             </form>
@@ -112,7 +112,7 @@ export default {
         .post("https://elnic.herokuapp.com/api/auth/signup", this.form)
         .then(res => {
           this.$swal({
-            title: "Signup successfully",
+            title: "Đăng ký thành công!!!",
             icon: "success",
             toast: true,
             position: "top-end",

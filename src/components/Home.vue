@@ -53,7 +53,7 @@
                               src="../../static/images/elnic/icon-1.png"
                               alt=""
                           /></span>
-                          <span class="text">Learn More</span>
+                          <span class="text">Xem chi tiết</span>
                         </span>
                       </router-link>
                       <p
@@ -66,7 +66,7 @@
                               src="../../static/images/elnic/icon-3.png"
                               alt=""
                           /></span>
-                          <span class="text">Add To Cart</span>
+                          <span class="text">Thêm vào giỏ</span>
                         </span>
                       </p>
                     </div>
@@ -178,7 +178,7 @@
                               src="../../static/images/elnic/icon-1.png"
                               alt=""
                           /></span>
-                          <span class="text">Learn More</span>
+                          <span class="text">Xem chi tiết</span>
                         </router-link>
                       </a>
                       <p
@@ -191,7 +191,7 @@
                               src="../../static/images/elnic/icon-3.png"
                               alt=""
                           /></span>
-                          <span class="text">Add To Cart</span>
+                          <span class="text">Thêm vào giỏ</span>
                         </span>
                       </p>
                     </div>
@@ -338,7 +338,7 @@
                               src="../../static/images/elnic/icon-1.png"
                               alt=""
                           /></span>
-                          <span class="text">Learn More</span>
+                          <span class="text">Xem</span>
                         </span>
                       </router-link>
                       <p
@@ -351,7 +351,7 @@
                               src="../../static/images/elnic/icon-3.png"
                               alt=""
                           /></span>
-                          <span class="text">Add To Cart</span>
+                          <span class="text">Thêm vào giỏ</span>
                         </span>
                       </p>
                     </div>
@@ -421,7 +421,7 @@
                               src="../../static/images/elnic/icon-1.png"
                               alt=""
                           /></span>
-                          <span class="text">Learn More</span>
+                          <span class="text">Xem</span>
                         </span>
                       </router-link>
                       <p
@@ -434,7 +434,7 @@
                               src="../../static/images/elnic/icon-3.png"
                               alt=""
                           /></span>
-                          <span class="text">Add To Cart</span>
+                          <span class="text">Thêm vào giỏ</span>
                         </span>
                       </p>
                     </div>
@@ -576,7 +576,7 @@ export default {
     },
     addToCart(product) {
       this.$swal({
-        title: "Add to cart successfully",
+        title: "Thêm vào giỏ hàng thành công",
         icon: "success",
         toast: true,
         position: "top-end",

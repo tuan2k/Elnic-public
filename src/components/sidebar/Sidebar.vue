@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="col-md-3 col-md-pull-9">
-      <div class="h4 col-xs-b25">popular categories</div>
+      <div class="h4 col-xs-b25">Doanh mục phổ biến</div>
       <ul class="categories-menu">
         <li v-for="category in categories" :key="category._id">
           <a v-on:click="searchByCategory(category._id)">{{

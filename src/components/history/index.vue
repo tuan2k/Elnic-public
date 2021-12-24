@@ -9,46 +9,46 @@
       <div class="empty-space col-xs-b15 col-sm-b50 col-md-b100" />
       <div class="text-center">
         <div class="simple-article size-3 grey uppercase col-xs-b5">
-          shopping cart
+            Cảm ơn bạn đã mua hàng tại shop chúng tôi!!!
         </div>
-        <div class="h2">check your Orders</div>
+        <div class="h2">Danh sách đơn hàng</div>
         <div class="title-underline center"><span /></div>
       </div>
     </div>
 
     <div class="empty-space col-xs-b35 col-md-b70" />
-
     <div class="container">
       <table class="cart-table">
         <thead>
           <tr>
-            <th style="width: 95px;" />
-            <th>Full Name</th>
-            <th>Phone</th>
-            <th>Status Payment</th>
-            <th>Payment</th>
+            <th>Họ và tên</th>
+            <th>Số điện thoại</th>
+            <th>Trạng thái thanh toán</th>
+            <th>Thanh toán</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td data-title=" ">
-              <a class="cart-entry-thumbnail" href="#"
-                ><img src="/../../img//product-1.png" alt=""
-              /></a>
+          <tr v-for="o in orderOld" :key="o._id">
+            <td>
+                <h6 class="h6">{{ o.fullName }}</h6>
             </td>
             <td>
-              <h6 class="h6">{{ order.fullName }}</h6>
+              <h6 class="h6">{{ o.phone }}</h6>
             </td>
             <td>
-              <span v-if="check !== true" class="h6">Chưa thanh toán</span>
-              <span class="h6" v-else>Đã thanh toán</span>
+              <span v-if="o.status === true" class="h6">Đã thanh toán</span>
+              <span class="h6" v-else>Chưa thanh toán</span>
             </td>
             <td>
-              <div ref="paypal" v-if="check !== true"></div>
+                <span v-if="o.status !== true" class="btn btn-primary" v-on:click="Payment()">Thanh toán</span>
             </td>
           </tr>
         </tbody>
       </table>
+      <div ref="paypal" v-show="this.show === true"></div>
+    </div>
+
+    <div class="container">
       <div class="empty-space col-xs-b35" />
       <div class="row">
         <div class="col-sm-6 col-md-5 col-xs-b10 col-sm-b0">
@@ -86,20 +86,21 @@ export default {
     axios
       .get("https://elnic-api.herokuapp.com/api/orders/getByUserId/" + id)
       .then(({ data }) => {
-        this.order = data[0];
-        console.log(this.order);
-        this.tests.push(1);
+        this.orderOld = data;
+        console.log(this.orderOld);
       })
       .catch();
     this.total = this.$store.state.total;
   },
   data() {
     return {
+      orderOld: [],
       order: {
         fullName: "",
         phone: "",
         status: false
       },
+      show: false,
       form: {
         status: "",
         transactionId: ""
@@ -109,7 +110,7 @@ export default {
       paidFor: false,
       check: false,
       product: {
-        description: "leg lamp from that one movie"
+        description: "Đây la sản phẩm của ELNIC"
       },
       tests: []
     };
@@ -158,34 +159,35 @@ export default {
               timerProgressBar: true
             });
             this.form.status = true;
+            let l = this.orderOld.length;
+            let idO = this.orderOld[0]._id
             this.form.transactionId = orders.id;
+            this.orderOld[0].status = true;
+            this.show = false;
             axios
               .put(
-                "https://elnic-api.herokuapp.com/api/orders/" + this.order._id,
+                "https://elnic-api.herokuapp.com/api/orders/" + idO,
                 this.form
               )
               .then(({ data }) => {
-                this.order = data[0];
-                this.order.status = true;
-                // console.log(this.order);
-              })
-              .catch(err => {
-                // console.log(err.response);
-                this.$swal({
-                  title: "Something's wrong. Please try again",
-                  icon: "error",
+                  this.$swal({
+                  title: "Thanh toán thành công!!!",
+                  icon: "success",
                   toast: true,
                   position: "top-end",
                   showConfirmButton: false,
                   timer: 2500,
                   timerProgressBar: true
-                });
+                });                
+              })
+              .catch(err => {
+                // console.log(err.response);
               });
           },
           onError: err => {
             console.log(err);
             this.$swal({
-              title: "Something's very wrong. Please try again",
+              title: "Thanh toán thất bại",
               icon: "error",
               toast: true,
               position: "top-end",
@@ -199,6 +201,10 @@ export default {
     },
     getTotal() {
       this.$store.dispatch("getTotal");
+    },
+    Payment(){
+       if (this.show === false ) this.show = true;
+       else this.show = false;
     }
   },
   components: {

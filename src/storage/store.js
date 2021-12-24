@@ -90,11 +90,11 @@ export const store = new Vuex.Store({
     getTotal: context => {
       context.commit("getTotal");
     },
-    getSliders() {
-      axios.get("https://elnic-api.herokuapp.com/api/sliders").then(res => {
-        this.state.sliders = res.data;
-        // console.log(this.sliders);
-      });
-    }
+    // getSliders() {
+    //   axios.get("https://elnic-api.herokuapp.com/api/sliders").then(res => {
+    //     this.state.sliders = res.data;
+    //     // console.log(this.sliders);
+    //   });
+    // }
   }
 });

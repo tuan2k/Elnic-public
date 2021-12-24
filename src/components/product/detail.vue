@@ -2,12 +2,6 @@
   <div>
     <div class="container">
       <div class="empty-space col-xs-b15 col-sm-b30" />
-      <div class="breadcrumbs">
-        <a href="#">home</a>
-        <a href="#">accessories</a>
-        <a href="#">gadgets</a>
-        <a href="#">sport gadgets</a>
-      </div>
       <div class="empty-space col-xs-b15 col-sm-b50 col-md-b100" />
       <div class="row">
         <div class="col-md-9 col-md-push-3">
@@ -64,7 +58,7 @@
               <div class="row col-xs-b25">
                 <div class="col-sm-6">
                   <div class="simple-article size-5 grey">
-                    PRICE: <span class="color">{{ form.sellingPrice }}</span>
+                    Giá: <span class="color">{{ form.sellingPrice }}</span>
                   </div>
                 </div>
                 <div class="col-sm-6 col-sm-text-right">
@@ -131,25 +125,15 @@
                       <span class="icon"
                         ><img src="/../../img/icon-2.png" alt=""
                       /></span>
-                      <span class="text">add to cart</span>
+                      <span class="text">Thêm vào giỏ hàng</span>
                     </span>
                   </p>
                 </div>
                 <div class="col-sm-6">
-                  <a class="button size-2 style-1 block noshadow" href="#">
-                    <span class="button-wrapper">
-                      <span class="icon"
-                        ><i class="fa fa-heart-o" aria-hidden="true"
-                      /></span>
-                      <span class="text">add to favourites</span>
-                    </span>
-                  </a>
                 </div>
               </div>
             </div>
           </div>
-
-          <div class="empty-space col-xs-b35 col-md-b70" />
 
           <div class="tabs-block">
             <div class="tabulation-menu-wrapper text-center">
@@ -172,7 +156,15 @@
                       alt=""
                     />
                     <div class="heading-description">
-                      <div class="h6 col-xs-b5">{{ rv.username }}</div>
+                      <div class="h6 col-xs-b5">
+                        {{ rv.username }}
+                         <span
+                          v-if="rv.userId === userIdLogin"
+                          class="btn btn-danger btn-sm"
+                          v-on:click="deleteReview(rv._id)"
+                          >X</span
+                        >
+                        </div>
                       <div class="rate-wrapper align-inline">
                         <star-rating
                           :rating="rv.rating"
@@ -181,18 +173,14 @@
                       </div>
                       <p>
                         {{ rv.sumarry }}
-                        <span
-                          v-if="rv.userId === userIdLogin"
-                          class="btn btn-danger btn-sm"
-                          v-on:click="deleteReview(rv._id)"
-                          >X</span
-                        >
                       </p>
                     </div>
+                    <br/> <br/>
                   </div>
                 </div>
               </div>
-              <form>
+              <div v-if="this.username !== '' && this.username !== undefined && this.username!== null">
+              <form @submit.prevent="saveReview()">
                 <div class="row m10">
                   <div>
                     <star-rating
@@ -204,6 +192,7 @@
                   <div class="col-sm-12">
                     <textarea
                       v-model="comment"
+                      required
                       class="simple-input"
                       placeholder="Bình luận"
                     />
@@ -215,16 +204,17 @@
                     <div class="button size-2 style-3">
                       <span class="button-wrapper">
                         <button
-                          class="btn btn-primary"
-                          v:on:click="saveReview()"
+                          class="btn btn-primary btn-lg"
+                          type="submit"
                         >
-                          submit
+                          Gửi
                         </button>
                       </span>
                     </div>
                   </div>
                 </div>
               </form>
+              </div>
             </div>
           </div>
         </div>
@@ -245,6 +235,7 @@ export default {
   created() {
     this.getCartItems();
     this.userIdLogin = localStorage.getItem("id");
+    this.username = localStorage.getItem("user");
     let id = this.$route.params.id;
     axios
       .get("https://elnic-api.herokuapp.com/api/product/" + id)
@@ -270,9 +261,14 @@ export default {
       this.carts = this.$store.state.cartItems;
     },
     addToCart(product) {
-      Toast.fire({
+      this.$swal({
+        title: "Thêm vào giỏ hàng thành công",
         icon: "success",
-        title: "Add to cart successfully"
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 2500,
+        timerProgressBar: true
       });
       this.$store.dispatch("addToCart", product);
     },
@@ -295,7 +291,7 @@ export default {
                 return rv._id !== id;
               });
               this.$swal({
-                title: "Delete comment success <3",
+                title: "Xóa bình luận thành công!!!",
                 icon: "success",
                 toast: true,
                 position: "top-end",
@@ -317,6 +313,7 @@ export default {
         .get("https://elnic-api.herokuapp.com/api/review/findByProductId/" + id)
         .then(res => {
           this.reviews = res.data;
+          console.log("first time");
           console.log(res);
         })
         .catch(error => {
@@ -324,30 +321,30 @@ export default {
           console.log(error);
         });
     },
-    saveReview() {
-      let userId = localStorage.getItem("id");
+    saveReview: async function() {
+      let uId = localStorage.getItem("id");
+      this.username = localStorage.getItem("user");
       let obj = {
-        userId: userId,
+        userId: uId,
         username: this.username,
         rating: this.rating,
         sumarry: this.comment,
         productId: this.form._id
       };
       console.log(obj);
-      axios
+      let id = this.form._id;
+      await axios
         .post("https://elnic-api.herokuapp.com/api/review", obj)
         .then(res => {
           this.comment = "";
           this.rating = 5;
-          let id = this.form._id;
-          axios
-            .get(
+          axios.get(
               "https://elnic-api.herokuapp.com/api/review/findByProductId/" + id
             )
             .then(res => {
               this.reviews = res.data;
               this.$swal({
-                title: "Thanks for your comment <3",
+                title: "Bạn đã bình luận thành công!!!",
                 icon: "success",
                 toast: true,
                 position: "top-end",
@@ -358,9 +355,8 @@ export default {
             })
             .catch(error => {
               this.errors = error.response;
-              // console.log(error);
               this.$swal({
-                title: "Something's wrong! Please try again",
+                title: "Có lỗi xảy ra.Hãy thử lại!!!",
                 icon: "error",
                 toast: true,
                 position: "top-end",
