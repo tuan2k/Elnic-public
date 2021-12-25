@@ -40,7 +40,7 @@
               <span class="h6" v-else>Chưa thanh toán</span>
             </td>
             <td>
-                <span v-if="o.status !== true" class="btn btn-primary" v-on:click="Payment()">Thanh toán</span>
+                <span v-if="o.status !== true" class="btn btn-primary" v-on:click="Payment(o._id)">Thanh toán</span>
             </td>
           </tr>
         </tbody>
@@ -95,6 +95,7 @@ export default {
   data() {
     return {
       orderOld: [],
+      idCOrder: '',
       order: {
         fullName: "",
         phone: "",
@@ -146,11 +147,8 @@ export default {
             this.paidFor = true;
             console.log(orders);
             this.check = true;
-            this.$store.state.cartItemCount = 0;
-            this.$store.state.cartItems = [];
-            this.$store.state.cartQuantity = [];
             this.$swal({
-              title: "Payment successfully",
+              title: "Thanh toán thành công!!!",
               icon: "error",
               toast: true,
               position: "top-end",
@@ -160,9 +158,9 @@ export default {
             });
             this.form.status = true;
             let l = this.orderOld.length;
-            let idO = this.orderOld[0]._id
+            let idO = this.orderOld[l-1]._id
             this.form.transactionId = orders.id;
-            this.orderOld[0].status = true;
+            this.orderOld[l-1].status = true;
             this.show = false;
             axios
               .put(
@@ -202,7 +200,8 @@ export default {
     getTotal() {
       this.$store.dispatch("getTotal");
     },
-    Payment(){
+    Payment(id){
+       this.idCOrder = id;
        if (this.show === false ) this.show = true;
        else this.show = false;
     }

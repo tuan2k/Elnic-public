@@ -6,7 +6,7 @@
     >
       <div class="container">
         <div class="row">
-          <div class="col-sm-6 col-sm-offset-3">
+          <!-- <div class="col-sm-6 col-sm-offset-3">
             <div class="cell-view simple-banner-height text-center">
               <div class="empty-space col-xs-b35 col-sm-b70" />
               <h1 class="h1">contact us</h1>
@@ -16,19 +16,17 @@
               </div>
               <div class="empty-space col-xs-b35 col-sm-b70" />
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
 
-    <div class="empty-space col-xs-b35 col-md-b70" />
-
     <div class="container">
       <div class="text-center">
         <div class="simple-article size-3 grey uppercase col-xs-b5">
-          our contacts
+            Liên lạc với chúng tôi
         </div>
-        <div class="h2">we ready for your questions</div>
+        <div class="h2">Chúng tôi sẵn sàng cho những câu hỏi</div>
         <div class="title-underline center"><span /></div>
       </div>
     </div>
@@ -98,6 +96,7 @@
                   class="simple-input col-xs-b20"
                   type="text"
                   value=""
+                  required
                   placeholder="Name"
                   name="name"
                 />
@@ -107,6 +106,7 @@
                   class="simple-input col-xs-b20"
                   type="text"
                   value=""
+                  required
                   placeholder="Email"
                   name="email"
                 />
@@ -116,6 +116,7 @@
                   class="simple-input col-xs-b20"
                   type="text"
                   value=""
+                  required
                   placeholder="Phone"
                   name="phone"
                 />
@@ -125,6 +126,7 @@
                   class="simple-input col-xs-b20"
                   type="text"
                   value=""
+                  required
                   placeholder="Subject"
                   name="subject"
                 />

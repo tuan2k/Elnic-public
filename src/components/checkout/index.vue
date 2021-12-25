@@ -207,6 +207,10 @@ export default {
          axios.post('https://elnic-api.herokuapp.com/api/orders',this.form)
           .then( (response) => {
             console.log(response.data._id);
+            this.$store.state.cartItemCount = 0;
+            this.$store.state.cartItems = [];
+            this.$store.state.cartQuantity = [];
+            this.$store.state.total = 0;
             this.$router.push({ name: 'history',params:{id: response.data.userId}})
           })
           .catch( (err) => {
