@@ -7,24 +7,6 @@
           <a v-on:click="searchByCategory(category._id)">{{
             category.categoryName
           }}</a>
-          <div class="toggle" />
-          <ul>
-            <li>
-              <a href="">laptops &amp; computers</a>
-            </li>
-            <li>
-              <a href="">video &amp; photo cameras</a>
-            </li>
-            <li>
-              <a href="">smartphones</a>
-            </li>
-            <li>
-              <a href="">tv &amp; audio</a>
-            </li>
-            <li>
-              <a href="">gadgets</a>
-            </li>
-          </ul>
         </li>
       </ul>
       <div class="empty-space col-xs-b25 col-sm-b50" />
